@@ -128,7 +128,7 @@ git checkout -b feature/my-change
 
 Tạo `.env` hoặc `.env.local` trong thư mục `dashboard/`:
 
-```env title="dashboard/.env"
+```bash title="dashboard/.env"
 # Cấu hình API
 NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
 

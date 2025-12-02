@@ -17,7 +17,7 @@ OpenRouter provides access to 100+ AI models through a single API, making it eas
 
 ### 2. Configure Environment
 
-```env title=".env"
+```bash title=".env"
 # Enable AI Features
 ENABLE_AI=true
 AI_PROVIDER=openrouter
@@ -396,7 +396,7 @@ const cache = new Map()
 
 ### 1. Development Setup
 
-```env title=".env.development"
+```bash title=".env.development"
 # Use free models for development
 OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 OPENROUTER_SITE_URL=http://localhost:3000
@@ -404,7 +404,7 @@ OPENROUTER_SITE_URL=http://localhost:3000
 
 ### 2. Production Setup
 
-```env title=".env.production"
+```bash title=".env.production"
 # Use reliable paid models for production
 OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
 OPENROUTER_SITE_URL=https://legocity.example.com

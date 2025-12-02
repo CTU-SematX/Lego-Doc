@@ -41,7 +41,7 @@ cp .env.example .env
 
 Minimal configuration:
 
-```env
+```bash
 # Database
 DATABASE_URI=mongodb://127.0.0.1/legocity
 

@@ -123,7 +123,7 @@ Tất cả bí mật và cấu hình đặc thù môi trường nên được l�
 
 Ví dụ `.env` (minh họa, không đầy đủ):
 
-```env
+```bash
 # General
 APP_ENV=production
 

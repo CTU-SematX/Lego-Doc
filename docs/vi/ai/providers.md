@@ -24,7 +24,7 @@ LegoCity hỗ trợ nhiều AI providers thông qua Payload AI plugin. Hướng 
 
 2. **Cấu hình môi trường**:
 
-```env title=".env"
+```bash title=".env"
 # Bật tính năng AI
 ENABLE_AI=true
 AI_PROVIDER=openai
@@ -82,7 +82,7 @@ Bắt đầu với **gpt-4o-mini** cho hầu hết use cases - chất lượng t
 
 2. **Cấu hình môi trường**:
 
-```env title=".env"
+```bash title=".env"
 # Bật tính năng AI
 ENABLE_AI=true
 AI_PROVIDER=anthropic
@@ -135,7 +135,7 @@ export default buildConfig({
 
 2. **Cấu hình môi trường**:
 
-```env title=".env"
+```bash title=".env"
 ELEVENLABS_API_KEY=...
 ELEVENLABS_VOICE_ID=21m00Tcm4TlvDq8ikWAM  # Giọng nói mặc định
 ```
@@ -164,7 +164,7 @@ Xem hướng dẫn chi tiết: [OpenRouter Custom Provider](openrouter.md)
 
 **Thiết lập nhanh**:
 
-```env title=".env"
+```bash title=".env"
 AI_PROVIDER=openrouter
 OPENROUTER_API_KEY=sk-or-v1-...
 OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
@@ -200,7 +200,7 @@ OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 
 ### Development
 
-```env title=".env.development"
+```bash title=".env.development"
 ENABLE_AI=true
 AI_PROVIDER=openrouter
 OPENROUTER_API_KEY=...
@@ -211,7 +211,7 @@ OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 
 ### Staging
 
-```env title=".env.staging"
+```bash title=".env.staging"
 ENABLE_AI=true
 AI_PROVIDER=openai
 OPENAI_API_KEY=...
@@ -222,7 +222,7 @@ OPENAI_MODEL=gpt-4o-mini
 
 ### Production
 
-```env title=".env.production"
+```bash title=".env.production"
 ENABLE_AI=true
 AI_PROVIDER=anthropic
 ANTHROPIC_API_KEY=...

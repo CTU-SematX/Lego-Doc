@@ -119,7 +119,7 @@ Trong mọi trường hợp:
     ```
 
 === "Biến môi trường"
-```env title=".env" # Cấu hình nhà cung cấp AI
+```bash title=".env" # Cấu hình nhà cung cấp AI
 ENABLE_AI=true
 AI_PROVIDER=openai
 OPENAI_API_KEY=sk-...

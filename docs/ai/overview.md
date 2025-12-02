@@ -170,7 +170,7 @@ import { payloadAI } from '@payloadcms/plugin-ai'
     ```
 
 === "Environment Variables"
-```env title=".env" # AI Provider Configuration
+```bash title=".env" # AI Provider Configuration
 ENABLE_AI=true
 AI_PROVIDER=openai
 OPENAI_API_KEY=sk-...

@@ -83,7 +83,7 @@ cp dashboard/.env.example dashboard/.env
 
 Chỉnh sửa `dashboard/.env`:
 
-```env
+```bash
 # Database (sử dụng tên dịch vụ Docker)
 DATABASE_URI=mongodb://mongodb:27017/legocity
 
@@ -287,7 +287,7 @@ curl http://localhost:1026/ngsi-ld/v1/entities
 
 Tạo file `.env` trong root:
 
-```env
+```bash
 # Dashboard
 PAYLOAD_SECRET=your-secret-here
 NEXT_PUBLIC_MAPBOX_TOKEN=pk.your_token

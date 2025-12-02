@@ -1,105 +1,110 @@
- 
 
-# Project Title
+# LegoCity Documentation
 
-Project logo and badges goes here.
+<div style="float:right">
+	<a href="README.vi.md" style="background-color:#0b63ce;color:#ffffff;padding:6px 10px;border-radius:6px;text-decoration:none;font-weight:600">Tiếng Việt</a>
+</div>
 
-Examples: All pointing to this project
-[![Version](https://img.shields.io/github/v/tag/diggsweden/open-source-project-template?style=for-the-badge&color=green&label=Version)](https://github.com/diggswedenn/open-source-project-template/tags])
-[![REUSE](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.reuse.software%2Fstatus%2Fgithub.com%2Fdiggsweden%2Fopen-source-project-template&query=status&style=for-the-badge&label=REUSE)](https://api.reuse.software/info/github.com/diggsweden/open-source-project-template)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/diggsweden/open-source-project-template/badge?style=for-the-badge)](https://scorecard.dev/viewer/?uri=github.com/diggsweden/open-source-project-template)
-![Standard for Public Code Commitment](https://img.shields.io/badge/Standard%20for%20Public%20Code%20Commitment-green?style=for-the-badge)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=for-the-badge)](https://creativecommons.org/licenses/by/4.0/)
+[![VitePress](https://img.shields.io/badge/VitePress-1.x-646CFF?style=for-the-badge&logo=vite)](https://vitepress.dev/)
 
-Highly optional. Embed an image of the project logo and include links to relevant badges in the README.
+Official documentation for **LegoCity** — a Smart City Builder platform for modern, map-based urban dashboards.
 
-**Description**:  Put a meaningful, short, plain-language description of what the project is trying to accomplish and why it matters.
-Describe the problem(s) this project solves.
+🌐 **Live Documentation**: [https://ctu-sematx.github.io/Lego-Doc/](https://ctu-sematx.github.io/Lego-Doc/)
 
-**Screenshot**: If the software has visual components, place a screenshot after the description; e.g.,
+## 📖 About
 
-## Table of Contents
+This repository contains the documentation source files for the LegoCity project. The documentation is built using [VitePress](https://vitepress.dev/) and deployed to GitHub Pages.
 
-- [Installation and Requirements](#installation-and-requirements)
-- [Quickstart Instructions](#quick-start-instructions)
-- [Usage](#usage)
-- [Known Issues](#known-issues)
-- [Support](#support)
-- [Contributing](#contributing)
-- [Development](#development)
-- [License](#license)
-- [Maintainers](#maintainers)
-- [Credits and References](#credits-and-references)
+## 🚀 Quick Start
 
-## Installation and Requirements
+### Prerequisites
 
-Detailed instructions on how to install, configure, and get the project running.
-This should be frequently tested to ensure reliability. Alternatively, link to
-a separate _INSTALLATION.md_ document.
+- [Node.js](https://nodejs.org/) 18.x or later
+- npm or pnpm
 
-Simple example:
+### Local Development
 
-`$ pip install PROJECT`
+```bash
+# Clone the repository
+git clone https://github.com/CTU-SematX/Lego-Doc.git
+cd Lego-Doc
 
-`$ npm install PROJECT --save`
+# Install dependencies
+npm install
 
-`$ any other command`
+# Start development server
+npm run docs:dev
+```
 
-## Quick start instructions
+The documentation will be available at `http://localhost:5173/Lego-Doc/`
 
-Describe the fastest possible way to get the project running.
+### Build for Production
 
-## Usage
+```bash
+npm run docs:build
+```
 
-Show users how to use the software.
-Be specific.
-Use appropriate formatting when showing code snippets.
+### Preview Production Build
 
-## Known issues
+```bash
+npm run docs:preview
+```
 
-Document any known significant shortcomings with the software.
+## 📁 Project Structure
 
-## Support
+```
+Lego-Doc/
+├── docs/
+│   ├── .vitepress/
+│   │   └── config.mts      # VitePress configuration
+│   ├── public/             # Static assets
+│   ├── vi/                 # Vietnamese translations
+│   ├── getting-started/    # Getting started guides
+│   ├── installation/       # Installation guides
+│   ├── user-guide/         # User documentation
+│   ├── configuration/      # Configuration guides
+│   ├── development/        # Developer documentation
+│   ├── ai/                 # AI integration docs
+│   ├── deployment/         # Deployment guides
+│   ├── reference/          # Reference documentation
+│   └── index.md            # Homepage
+├── package.json
+└── README.md
+```
 
-Instruct users how to get help with this software; this might include links to an issue tracker, wiki, mailing list, etc.
+## 🌍 Languages
 
-Example:
+- **English** (default)
+- **Tiếng Việt** (Vietnamese)
 
-_If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker._
+## 🤝 Contributing
 
-## Contributing
+We welcome contributions to improve the documentation!
 
-This section should detail why people should get involved and describe key areas you are
-currently focusing on; e.g., trying to get feedback on features, fixing certain bugs, building
-important pieces, etc.
+1. Fork this repository
+2. Create a new branch (`git checkout -b feature/improve-docs`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Improve documentation'`)
+5. Push to the branch (`git push origin feature/improve-docs`)
+6. Open a Pull Request
 
-General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and contribution guidelines.
 
-## Development
+## 📝 License
 
-General instructions on how to Develop for the project should be stated with a link to _DEVELOPMENT.md_.
+This documentation is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSES/CC-BY-4.0.txt).
+
+## 🔗 Related Links
+
+- **LegoCity Repository**: [github.com/CTU-SematX/LegoCity](https://github.com/CTU-SematX/LegoCity)
+- **Issues**: [GitHub Issues](https://github.com/CTU-SematX/Lego-Doc/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/CTU-SematX/LegoCity/discussions)
+
+## 👥 Maintainers
+
+**CTU-SematX Team**
 
 ---
 
-## License
-
-Example:
-This project is licensed under the Creative Commons Zero v1.0 Universal License - see the [LICENSE](LICENSE) file for details
-
----
-
-## Maintainers
-
-Name and git-account for primary maintainer/s:
-
-Example:
-_The_maintainers_
-
-## Credits and References
-
-Credits, references or other relevant information.
-
-Example:
-
-Special Thanks to
-
-- [IEEE Open Source Maintainers Manual](https://opensource.ieee.org/community/manual/)
+Built with ❤️ using [VitePress](https://vitepress.dev/)

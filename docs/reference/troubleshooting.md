@@ -415,7 +415,7 @@ docker compose run --rm dashboard sh
 
 1. **Use service names**, not localhost:
 
-   ```env
+   ```bash
    # ❌ Wrong
    DATABASE_URI=mongodb://localhost:27017/legocity
 

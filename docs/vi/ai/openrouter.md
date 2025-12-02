@@ -17,7 +17,7 @@ OpenRouter cung cấp truy cập 100+ mô hình AI thông qua một API duy nh�
 
 ### 2. Cấu hình môi trường
 
-```env title=".env"
+```bash title=".env"
 # Bật tính năng AI
 ENABLE_AI=true
 AI_PROVIDER=openrouter
@@ -279,7 +279,7 @@ OpenRouter cung cấp theo dõi mức sử dụng:
 
 **Sử dụng mô hình miễn phí cho phát triển**
 
-```env title=".env.development"
+```bash title=".env.development"
 OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 ```
 
@@ -369,7 +369,7 @@ curl https://openrouter.ai/api/v1/models \
 
 ### 1. Thiết lập phát triển
 
-```env title=".env.development"
+```bash title=".env.development"
 # Sử dụng các mô hình miễn phí cho phát triển
 OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 OPENROUTER_SITE_URL=http://localhost:3000
@@ -377,7 +377,7 @@ OPENROUTER_SITE_URL=http://localhost:3000
 
 ### 2. Thiết lập sản xuất
 
-```env title=".env.production"
+```bash title=".env.production"
 # Sử dụng các mô hình trả phí đáng tin cậy cho sản xuất
 OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
 OPENROUTER_SITE_URL=https://legocity.example.com

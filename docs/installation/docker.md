@@ -83,7 +83,7 @@ cp dashboard/.env.example dashboard/.env
 
 Edit `dashboard/.env`:
 
-```env
+```bash
 # Database (use Docker service name)
 DATABASE_URI=mongodb://mongodb:27017/legocity
 
@@ -395,7 +395,7 @@ docker compose ps mongodb
 
 **Check connection string** in `.env`:
 
-```env
+```bash
 # Use service name, not localhost
 DATABASE_URI=mongodb://mongodb:27017/legocity
 ```

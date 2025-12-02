@@ -14,7 +14,15 @@ mega-linter-reports
 __pycache__
 
 */node_modules
+node_modules
 venv
 
-# MkDocs build output
+# MkDocs build output (legacy)
 site/
+
+# VitePress
+docs/.vitepress/cache
+docs/.vitepress/dist
+
+# npm
+package-lock.json

@@ -24,7 +24,7 @@ After installation, configure these essentials:
 
 ### Core Settings (`.env`)
 
-```env
+```bash
 # ================================
 # Database
 # ================================
@@ -150,7 +150,7 @@ For multi-tenant deployments:
 
 1. **Create Tenant**
 
-   ```env
+   ```bash
    NGSI_LD_TENANT=city-name
    ```
 

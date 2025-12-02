@@ -17,7 +17,7 @@ LegoCity is a Smart City Builder that provides a reusable foundation for buildin
 
 ### Core Components
 
-![LegoCity Architecture](../assets/diagram_EN.png)
+![LegoCity Architecture](/diagram_EN.png)
 
 _LegoCity's 3-layer architecture: Data Sources, Smart City Context Broker, and Dashboard Management_
 
@@ -55,7 +55,7 @@ Before you begin, ensure you have:
 
    Edit `.env` and set:
 
-   ```env
+   ```bash
    DATABASE_URI=mongodb://127.0.0.1/legocity
    PAYLOAD_SECRET=your-secret-key-here
    NEXT_PUBLIC_SERVER_URL=http://localhost:3000

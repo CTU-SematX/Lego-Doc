@@ -119,7 +119,7 @@ cp .env.example .env
 
 Edit `.env` with development settings:
 
-```env
+```bash
 # Database
 DATABASE_URI=mongodb://127.0.0.1/legocity-dev
 

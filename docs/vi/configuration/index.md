@@ -24,7 +24,7 @@ Sau khi cài đặt, cấu hình những điều cần thiết này:
 
 ### Core Settings (`.env`)
 
-```env
+```bash
 # ================================
 # Database
 # ================================
@@ -150,7 +150,7 @@ Cho các triển khai đa thuê bao:
 
 1. **Tạo Thuê bao**
 
-   ```env
+   ```bash
    NGSI_LD_TENANT=city-name
    ```
 

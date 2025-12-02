@@ -128,7 +128,7 @@ git checkout -b feature/my-change
 
 Create `.env` or `.env.local` in the `dashboard/` directory:
 
-```env title="dashboard/.env"
+```bash title="dashboard/.env"
 # API Configuration
 NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
 

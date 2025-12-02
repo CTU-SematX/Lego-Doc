@@ -17,7 +17,7 @@ LegoCity là một Smart City Builder cung cấp một nền tảng có thể t�
 
 ### Core Components
 
-![LegoCity Architecture](../assets/diagram_EN.png)
+![LegoCity Architecture](/diagram_EN.png)
 
 _Kiến trúc 3 lớp của LegoCity: Data Sources, Smart City Context Broker, và Dashboard Management_
 
@@ -55,7 +55,7 @@ Trước khi bắt đầu, đảm bảo bạn có:
 
    Edit `.env` và set:
 
-   ```env
+   ```bash
    DATABASE_URI=mongodb://127.0.0.1/legocity
    PAYLOAD_SECRET=your-secret-key-here
    NEXT_PUBLIC_SERVER_URL=http://localhost:3000

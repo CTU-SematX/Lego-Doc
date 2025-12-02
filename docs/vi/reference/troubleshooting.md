@@ -123,7 +123,7 @@ corepack prepare pnpm@latest --activate
 
 2. **Kiểm tra DATABASE_URI**:
 
-   ```env
+   ```bash
    # Phải match với Docker service name
    DATABASE_URI=mongodb://mongodb:27017/legocity
    ```
@@ -380,7 +380,7 @@ docker compose run --rm dashboard sh
 
 1. **Sử dụng service names**, không phải localhost:
 
-   ```env
+   ```bash
    # ❌ Sai
    DATABASE_URI=mongodb://localhost:27017/legocity
 
