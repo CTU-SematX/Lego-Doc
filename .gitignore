@@ -25,4 +25,3 @@ docs/.vitepress/cache
 docs/.vitepress/dist
 
 # npm
-package-lock.json
