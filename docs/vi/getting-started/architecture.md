@@ -3,56 +3,93 @@
 Hiểu kiến trúc của LegoCity giúp bạn đưa ra quyết định sáng suốt về customization và deployment.
 
 ## Kiến trúc Hệ thống
+
 ```mermaid
-flowchart LR
-
-  %% ----- LAYER 1: DATA SOURCES -----
-  subgraph L1["LAYER 1: DATA SOURCES\n(Nguồn dữ liệu)"]
-    A["Server nguồn A\n(IoT/Sensor/Legacy Sys)"]
-    B["Server nguồn B\n(Camera AI/External API)"]
-    C["Server nguồn N..."]
-  end
-
-  %% ----- LAYER 2: SMART CITY CONTEXT BROKER NODE -----
-  subgraph L2["LAYER 2: SMART CITY CONTEXT BROKER NODE\n(Cụm Broker)"]
-    SG["Security Gateway\n(Nginx Reverse Proxy + Authentication)"]
-    CB["Orion-LD\n(Context Broker)"]
-    MDB["MongoDB for\nOrion-LD State"]
-    OTH["Other Broker Nodes..."]
-  end
-
-  %% ----- LAYER 3: DASHBOARD & MANAGEMENT -----
-  subgraph L3["LAYER 3: DASHBOARD & MANAGEMENT\n(PayloadCMS + NextJS)"]
-    AS["Application Server\n(NextJS + PayloadCMS Core)"]
-    NX["NextJS"]
-    PL["PayloadCMS"]
-    DBD["Dashboard Database\n(Mongo/Postgres/SQLite)"]
-  end
-
-  %% ----- FLOWS: DATA SOURCES → BROKER -----
-  A -->|"HTTP POST\n(NGSI-LD Payload)\nPush Data + Auth Header"| SG
-  B -->|"HTTP POST\n(NGSI-LD Payload)\nPush Data + Auth Header"| SG
-  C -->|"HTTP POST\n(NGSI-LD Payload)\nPush Data + Auth Header"| SG
-
-  %% ----- BROKER INTERNALS -----
-  SG --> CB
-  CB --> MDB
-  CB --> OTH
-
-  %% ----- BROKER ↔ DASHBOARD -----
-  AS -->|"HTTP GET/SUB\n(NGSI-LD Query)\nFetch Data + Auth Header"| SG
-
-  %% ----- APP SERVER INTERNALS -----
-  AS --> NX
-  AS --> PL
-  PL -->|"CRUD Data"| DBD
-
-  %% ----- MANY-TO-MANY RELATION NOTE -----
-  NOTE[/"Mối quan hệ N-N:\n- 1 Dashboard kết nối N Broker\n- 1 Broker phục vụ N Dashboard"/]
-  CB --- NOTE
-  DBD --- NOTE
-
+graph TB
+    %% Nguồn Dữ Liệu
+    subgraph L1["🌐 NGUỒN DỮ LIỆU"]
+        DS1["Máy chủ nguồn A<br/>Cảm biến IoT"]
+        DS2["Máy chủ nguồn B<br/>Camera AI API"]
+        DS3["Máy chủ nguồn N"]
+    end
+    
+    %% Context Broker
+    subgraph L2["🔄 CONTEXT BROKER"]
+        SG["Cổng bảo mật<br/>Nginx + Xác thực"]
+        
+        subgraph BC["Broker Core"]
+            CB["Orion-LD<br/>Context Broker"]
+            MDB1[("MongoDB<br/>Trạng thái")]
+        end
+        
+        OBN["Các node khác"]
+        
+        CB -->|Lưu trữ| MDB1
+        CB -.->|Đồng bộ| OBN
+    end
+    
+    %% Dashboard
+    subgraph L3["📊 DASHBOARD"]
+        AS["Máy chủ ứng dụng<br/>Next.js + Payload"]
+        
+        subgraph AC["Ứng dụng"]
+            NX["Next.js"]
+            PL["PayloadCMS"]
+            NX <-->|API| PL
+        end
+        
+        MDB2[("Cơ sở dữ liệu<br/>MongoDB")]
+        
+        AS --> AC
+        PL -->|CRUD| MDB2
+    end
+    
+    %% Mối quan hệ
+    subgraph NR["ℹ️ Quan hệ N-N"]
+        INFO["1 Dashboard → N Brokers<br/>1 Broker → N Dashboards"]
+    end
+    
+    %% Dòng dữ liệu
+    DS1 ==>|POST<br/>NGSI-LD| SG
+    DS2 ==>|POST<br/>NGSI-LD| SG
+    DS3 ==>|POST<br/>NGSI-LD| SG
+    
+    SG ==>|Định tuyến| CB
+    AS <==>|GET/SUB<br/>Truy vấn| SG
+    
+    L2 -.- NR
+    L3 -.- NR
+    
+    %% Styling
+    classDef layer1 fill:#0891b2,stroke:#22d3ee,stroke-width:3px,color:#fff
+    classDef layer2main fill:#059669,stroke:#22c55e,stroke-width:4px,color:#fff
+    classDef layer2sub fill:#3b82f6,stroke:#60a5fa,stroke-width:3px,color:#fff
+    classDef layer3 fill:#7c3aed,stroke:#a855f7,stroke-width:3px,color:#fff
+    classDef db fill:#f97316,stroke:#fb923c,stroke-width:3px,color:#fff
+    classDef info fill:#334155,stroke:#64748b,stroke-width:2px,color:#cbd5e1
+    
+    class DS1,DS2,DS3 layer1
+    class SG layer2main
+    class CB,OBN layer2sub
+    class AS,NX,PL layer3
+    class MDB1,MDB2 db
+    class INFO info
+    
+    style L1 fill:#0f172a,stroke:#22d3ee,stroke-width:4px,color:#fff
+    style L2 fill:#0f172a,stroke:#22c55e,stroke-width:4px,color:#fff
+    style L3 fill:#0f172a,stroke:#a855f7,stroke-width:4px,color:#fff
+    style BC fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#94a3b8
+    style AC fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#94a3b8
+    style NR fill:#1e293b,stroke:#94a3b8,stroke-width:2px,stroke-dasharray:5 5,color:#e2e8f0
 ```
+
+::: tip Kiến trúc 3 lớp
+**Nguồn dữ liệu:** Các nguồn dữ liệu IoT, sensors, cameras, external APIs đẩy dữ liệu theo chuẩn NGSI-LD
+
+**Context Broker:** Cụm Context Broker với Security Gateway, Orion-LD và MongoDB để lưu trữ state
+
+**Dashboard:** Máy chủ ứng dụng với Next.js và PayloadCMS để quản lý và hiển thị dữ liệu
+:::
 
 ## Thiết kế Ba Lớp
 

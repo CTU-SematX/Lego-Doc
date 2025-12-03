@@ -18,58 +18,60 @@ Hướng dẫn này dành cho developers muốn:
 
 Cài đặt những công cụ này trước khi tiếp tục:
 
-=== "Node.js & pnpm"
+**Node.js & pnpm:**
 
-    ```bash
-    # Kiểm tra phiên bản Node.js (cần 18.x hoặc 20.x)
-    node --version
+```bash
+# Kiểm tra phiên bản Node.js (cần 18.x hoặc 20.x)
+node --version
 
-    # Cài đặt pnpm globally
-    npm install -g pnpm
+# Cài đặt pnpm globally
+npm install -g pnpm
 
-    # Xác minh pnpm
-    pnpm --version
-    ```
+# Xác minh pnpm
+pnpm --version
+```
 
-=== "Git"
+**Git:**
 
-    ```bash
-    # Kiểm tra cài đặt Git
-    git --version
+```bash
+# Kiểm tra cài đặt Git
+git --version
 
-    # Cấu hình Git
-    git config --global user.name "Your Name"
-    git config --global user.email "your.email@example.com"
-    ```
+# Cấu hình Git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
 
-=== "MongoDB"
+**MongoDB:**
 
-    **Option 1: Cài đặt Local**
-    ```bash
-    # Windows (qua Chocolatey)
-    choco install mongodb
+**Option 1: Cài đặt Local**
 
-    # macOS (qua Homebrew)
-    brew install mongodb-community
+```bash
+# Windows (qua Chocolatey)
+choco install mongodb
 
-    # Linux (Ubuntu/Debian)
-    sudo apt install mongodb
-    ```
+# macOS (qua Homebrew)
+brew install mongodb-community
 
-    **Option 2: Docker**
-    ```bash
-    docker run -d -p 27017:27017 --name mongodb mongo:6
-    ```
+# Linux (Ubuntu/Debian)
+sudo apt install mongodb
+```
 
-=== "VS Code (Được khuyến nghị)"
+**Option 2: Docker**
 
-    Cài đặt Visual Studio Code với extensions:
+```bash
+docker run -d -p 27017:27017 --name mongodb mongo:6
+```
 
-    - ESLint
-    - Prettier
-    - TypeScript and JavaScript Language Features
-    - Tailwind CSS IntelliSense
-    - MongoDB for VS Code
+**VS Code (Được khuyến nghị):**
+
+Cài đặt Visual Studio Code với extensions:
+
+- ESLint
+- Prettier
+- TypeScript and JavaScript Language Features
+- Tailwind CSS IntelliSense
+- MongoDB for VS Code
 
 ### Công cụ Tùy chọn
 

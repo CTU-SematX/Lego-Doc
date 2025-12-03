@@ -35,14 +35,13 @@ The rules are:
 
 ### 1.1 Anatomy of an Entity (Example)
 
-- Before diving into details, here is what a concrete entity looks like in LegoCity (represented in JSON-LD).
-- Notice the `type`, the `id`, and how properties are structured with `value` and `unitCode`.
+Before diving into details, here is what a concrete entity looks like in LegoCity (represented in JSON-LD). Notice the `type`, the `id`, and how properties are structured with `value` and `unitCode`.
 
-````json
+```json
 {
   "id": "urn:ngsi-ld:WeatherObserved:ctu:station:STATION_001",
   "type": "WeatherObserved",
-  "@context": "[https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld](https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld)",
+  "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
   "temperature": {
     "type": "Property",
     "value": 30.5,
@@ -60,6 +59,10 @@ The rules are:
     "value": "2023-11-29T10:00:00Z"
   }
 }
+```
+
+---
+
 ## 2. Entity types and domains
 
 A LegoCity deployment should maintain a clear list of **entity types** in use, grouped by **domain**.
@@ -69,19 +72,23 @@ A LegoCity deployment should maintain a clear list of **entity types** in use, g
 The exact domains depend on the project, but a typical breakdown is:
 
 - **Environment**
+
   - `WeatherObserved` – point observations of weather at specific locations.
   - `AirQualityObserved` – air quality measurements from fixed or mobile sensors.
 
 - **Water and flooding**
+
   - `FloodZone` – polygons representing areas at risk or currently flooded.
   - `WaterLevel` – current water levels at specific stations.
 
 - **Mobility and transport**
+
   - `ParkingFacility` – off-street parking structures (garages, lots).
   - `ParkingSpot` – individual parking spaces (optional, if needed).
   - `PublicTransportStop` – bus or transit stops with location and lines served.
 
 - **Public services**
+
   - `HealthFacility` – hospitals, clinics and related services.
   - `EducationalFacility` – schools and universities.
   - `PublicService` – administrative or general-purpose public services.
@@ -124,6 +131,7 @@ For each entity type, decide one of the following:
 - **Adoption with extensions**
   Use the Smart Data Model as a base, but add project-specific attributes.
   Example:
+
   - `WeatherObserved` with an extra attribute `localAlertCode` used only in this city.
 
 - **Custom model**
@@ -138,6 +146,7 @@ For each type, the entity catalogue should state which strategy was chosen.
 In NGSI-LD, every entity must include (or link to) a `@context`. This tells the system how to interpret attribute names (e.g., that `temperature` refers to a specific definition in the Smart Data Models dictionary).
 
 In LegoCity:
+
 - Update servers must append the correct `@context` URL when sending data.
 - Proxies and dashboards usually work with expanded data or a default context.
 
@@ -233,10 +242,12 @@ Time attributes indicate when data was observed or last updated.
 Examples:
 
 - `WeatherObserved`:
+
   - `observedAt` – when the measurement was taken at the station,
   - `lastUpdate` – when the update server last wrote this entity (optional).
 
 - `WaterLevel`:
+
   - `observedAt` – time of the water level reading.
 
 - `FloodZone`:
@@ -278,9 +289,11 @@ Each entity type should have a small set of **core attributes** that:
 Examples:
 
 - `WeatherObserved` (Environment):
+
   - `temperature`, `relativeHumidity`, `pressure`, `observedAt`, `location`.
 
 - `FloodZone` (Water & flooding):
+
   - `riskLevel` (e.g. low / medium / high),
   - `status` (e.g. active / inactive),
   - `location` (Polygon).
@@ -300,9 +313,11 @@ Some domains require quality indicators.
 Examples:
 
 - `WeatherObserved`:
+
   - `qualityIndex` or `validity` flag for sensor readings.
 
 - `AirQualityObserved`:
+
   - `aqi` (air quality index),
   - `source` (provider name),
   - `confidence` (optional).
@@ -345,6 +360,7 @@ These relationships allow:
 When deciding whether to use a relationship or just duplicate information:
 
 - use relationships when:
+
   - multiple entities refer to the same object (e.g. many `ParkingSpot` to one `ParkingFacility`),
   - you need to keep the central object’s attributes in one place (e.g. facility name, address).
 
@@ -370,7 +386,7 @@ Example of a Parking Spot linked to a Facility:
   "type": "Relationship",
   "object": "urn:ngsi-ld:ParkingFacility:ctu:parking:CTU_PARK_A"
 }
-
+```
 ---
 
 ## 9. Designing new entity types
@@ -465,4 +481,4 @@ Even if a full JSON schema is not maintained, the documentation should always in
 - Smart Data Models should be used wherever possible; when custom models are needed, they must be described clearly.
 - Identifier patterns, geospatial attributes, time attributes and relationships must follow shared conventions so that queries and visualisations behave predictably.
 - When new entity types are introduced, they should follow a consistent design process, be documented, and be tested end-to-end before adoption.
-````
+

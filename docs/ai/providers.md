@@ -2,17 +2,18 @@
 
 LegoCity supports multiple AI providers through the Payload AI plugin. This guide covers officially supported providers and custom provider setup.
 
-!!! info "Official Support"
+::: info Official Support
 **Officially Supported Providers:**
 
-    - ✅ **OpenAI** (GPT-4, GPT-3.5-turbo)
-    - ✅ **Anthropic** (Claude 3.5, Claude 3)
-    - ✅ **ElevenLabs** (Voice synthesis)
+- ✅ **OpenAI** (GPT-4, GPT-3.5-turbo)
+- ✅ **Anthropic** (Claude 3.5, Claude 3)
+- ✅ **ElevenLabs** (Voice synthesis)
 
-    **Custom Providers:**
+**Custom Providers:**
 
-    - 🔌 **OpenRouter** - Access to 100+ models (Gemini, Claude, GPT-4o, etc.)
-    - 🔧 **Custom Providers** - Build your own integration
+- 🔌 **OpenRouter** - Access to 100+ models (Gemini, Claude, GPT-4o, etc.)
+- 🔧 **Custom Providers** - Build your own integration
+  :::
 
 ---
 
@@ -69,8 +70,9 @@ export default buildConfig({
 | **gpt-4-turbo**   | Advanced reasoning                  | $$$  | Medium    |
 | **gpt-3.5-turbo** | Simple tasks, drafts                | $    | Very Fast |
 
-!!! tip "Recommendation"
+::: tip Recommendation
 Start with **gpt-4o-mini** for most use cases - excellent quality at low cost.
+:::
 
 ---
 
@@ -122,8 +124,9 @@ export default buildConfig({
 | **claude-3-5-haiku-20241022**  | Fast, cost-effective | 200K           | $    |
 | **claude-3-opus**              | Most capable         | 200K           | $$$  |
 
-!!! tip "Recommendation"
+::: tip Recommendation
 **Claude 3.5 Sonnet** offers excellent quality with large context windows - great for long-form content.
+:::
 
 ---
 
@@ -156,7 +159,14 @@ const audioUrl = await generateAudio({
 
 OpenRouter provides access to 100+ AI models through a unified API.
 
-!!! success "Why OpenRouter?" - ✅ Access to **Gemini 2.0 Flash**, Claude, GPT-4o, and many more - ✅ **No rate limits** from individual providers - ✅ **Cost-effective** - competitive pricing - ✅ **Automatic fallbacks** - if one model fails, try another - ✅ **Easy switching** - change models without code changes
+::: tip Why OpenRouter?
+
+- ✅ Access to **Gemini 2.0 Flash**, Claude, GPT-4o, and many more
+- ✅ **No rate limits** from individual providers
+- ✅ **Cost-effective** - competitive pricing
+- ✅ **Automatic fallbacks** - if one model fails, try another
+- ✅ **Easy switching** - change models without code changes
+  :::
 
 ### Setup
 

@@ -2,7 +2,15 @@
 
 OpenRouter provides access to 100+ AI models through a single API, making it easy to use custom models like Gemini 2.0 Flash, Claude, GPT-4o, and more without managing multiple provider integrations.
 
-!!! success "Why OpenRouter?" - 🆓 **Free models available** (Gemini 2.0 Flash, etc.) - 🔌 **100+ models** - Access to latest models from all providers - 💰 **Cost-effective** - Competitive pricing, pay-as-you-go - 🚀 **No rate limits** from individual providers - 🔄 **Automatic fallbacks** - Built-in retry logic - 🎯 **Single API** - One integration for all models
+::: tip Why OpenRouter?
+
+- 🆓 **Free models available** (Gemini 2.0 Flash, etc.)
+- 🔌 **100+ models** - Access to latest models from all providers
+- 💰 **Cost-effective** - Competitive pricing, pay-as-you-go
+- 🚀 **No rate limits** from individual providers
+- 🔄 **Automatic fallbacks** - Built-in retry logic
+- 🎯 **Single API** - One integration for all models
+  :::
 
 ---
 
@@ -86,8 +94,9 @@ export default buildConfig({
 | **meta-llama/llama-3.2-3b-instruct:free** | Meta     | ⚡⚡   | ⭐⭐⭐   | 128K      |
 | **qwen/qwen-2-7b-instruct:free**          | Alibaba  | ⚡⚡   | ⭐⭐⭐   | 32K       |
 
-!!! tip "Best Free Model"
+::: tip Best Free Model
 **google/gemini-2.0-flash-exp:free** - Excellent quality, very fast, 1M token context window
+:::
 
 ### Premium Models (Production Use)
 
@@ -160,7 +169,8 @@ export default buildConfig({
 ### By Budget
 
 === "Free Tier"
-```typescript
+
+````typescript
 // Best free option
 model: 'google/gemini-2.0-flash-exp:free'
 
@@ -226,7 +236,7 @@ export async function generateWithAI(
 
   return response.json();
 }
-```
+````
 
 ### Fallback Chain
 
@@ -301,7 +311,8 @@ OpenRouter provides usage tracking:
     `
 
 === "Cache Responses"
-```typescript
+
+````typescript
 // Cache AI responses for identical prompts
 const cache = new Map()
 
@@ -400,7 +411,7 @@ const cache = new Map()
 # Use free models for development
 OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 OPENROUTER_SITE_URL=http://localhost:3000
-```
+````
 
 ### 2. Production Setup
 

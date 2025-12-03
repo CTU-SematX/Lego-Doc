@@ -52,10 +52,13 @@ PAYLOAD_SECRET=your-secret-key-min-32-chars
 NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 ```
 
-!!! tip "Tạo Secret Key"
-`bash
-    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-    `
+::: tip Tạo Secret Key
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+:::
 
 ## 4. Khởi động Server Phát triển
 

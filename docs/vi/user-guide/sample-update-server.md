@@ -112,14 +112,14 @@ Các biến cấu hình điển hình:
     Danh sách các vị trí hoặc định danh trạm để được giám sát (định dạng được quyết định bởi triển khai).
 
 Ví dụ `.env` cho development:
-
+```bash
     BROKER_URL=https://dev-broker.example.com/ngsi-ld/v1
     BROKER_WRITE_KEY=dev-broker-write-key
     WEATHER_API_URL=https://api.example.com/weather
     WEATHER_API_KEY=dev-weather-api-key
     UPDATE_INTERVAL_SECONDS=300
     LOCATIONS=CTU_CAMPUS,CTU_CITY_CENTER
-
+```
 Các tên và định dạng thực tế có thể khác nhau, nhưng chúng phải được ghi lại rõ ràng trong README của sample server.
 
 ---

@@ -2,17 +2,18 @@
 
 LegoCity hỗ trợ nhiều AI providers thông qua Payload AI plugin. Hướng dẫn này bao gồm các nhà cung cấp được hỗ trợ chính thức và thiết lập nhà cung cấp tùy chỉnh.
 
-!!! info "Hỗ trợ chính thức"
+::: info Hỗ trợ chính thức
 **Nhà cung cấp được hỗ trợ chính thức:**
 
-    - ✅ **OpenAI** (GPT-4, GPT-3.5-turbo)
-    - ✅ **Anthropic** (Claude 3.5, Claude 3)
-    - ✅ **ElevenLabs** (Tổng hợp giọng nói)
+- ✅ **OpenAI** (GPT-4, GPT-3.5-turbo)
+- ✅ **Anthropic** (Claude 3.5, Claude 3)
+- ✅ **ElevenLabs** (Tổng hợp giọng nói)
 
-    **Nhà cung cấp tùy chỉnh:**
+**Nhà cung cấp tùy chỉnh:**
 
-    - 🔌 **OpenRouter** - Truy cập 100+ models (Gemini, Claude, GPT-4o, etc.)
-    - 🔧 **Custom Providers** - Tự xây dựng integration
+- 🔌 **OpenRouter** - Truy cập 100+ models (Gemini, Claude, GPT-4o, etc.)
+- 🔧 **Custom Providers** - Tự xây dựng integration
+  :::
 
 ---
 
@@ -69,8 +70,9 @@ export default buildConfig({
 | **gpt-4-turbo**   | Suy luận nâng cao                        | $$$  | Medium    |
 | **gpt-3.5-turbo** | Tác vụ đơn giản, bản nháp                | $    | Very Fast |
 
-!!! tip "Recommendation"
+::: tip Recommendation
 Bắt đầu với **gpt-4o-mini** cho hầu hết use cases - chất lượng tuyệt vời với chi phí thấp.
+:::
 
 ---
 
@@ -122,8 +124,9 @@ export default buildConfig({
 | **claude-3-5-haiku-20241022**  | Nhanh, hiệu quả chi phí        | 200K           | $    |
 | **claude-3-opus**              | Khả năng cao nhất              | 200K           | $$$  |
 
-!!! tip "Recommendation"
+::: tip Recommendation
 **Claude 3.5 Sonnet** cung cấp chất lượng tuyệt vời với context windows lớn - tuyệt vời cho long-form content.
+:::
 
 ---
 
@@ -156,7 +159,14 @@ const audioUrl = await generateAudio({
 
 OpenRouter cung cấp truy cập 100+ AI models thông qua unified API.
 
-!!! success "Why OpenRouter?" - ✅ Truy cập **Gemini 2.0 Flash**, Claude, GPT-4o và nhiều hơn - ✅ **No rate limits** từ individual providers - ✅ **Cost-effective** - giá cạnh tranh - ✅ **Automatic fallbacks** - nếu một model fails, thử model khác - ✅ **Easy switching** - đổi models mà không cần đổi code
+::: success Why OpenRouter?
+
+- ✅ Truy cập **Gemini 2.0 Flash**, Claude, GPT-4o và nhiều hơn
+- ✅ **No rate limits** từ individual providers
+- ✅ **Cost-effective** - giá cạnh tranh
+- ✅ **Automatic fallbacks** - nếu một model fails, thử model khác
+- ✅ **Easy switching** - đổi models mà không cần đổi code
+  :::
 
 ### Thiết lập
 

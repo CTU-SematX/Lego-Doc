@@ -168,37 +168,37 @@ Chúng tôi hoan nghênh các đóng góp! Xem:
 
 Chọn con đường của bạn:
 
-=== "Tôi là người mới"
+**Tôi là người mới:**
 
-    **Bắt đầu tại đây**:
+**Bắt đầu tại đây**:
 
-    1. Đọc [Bắt đầu](getting-started/index.md)
-    2. Làm theo [Khởi động Nhanh](getting-started/quickstart.md)
-    3. Khám phá [Hướng dẫn Sử dụng](user-guide/index.md)
+1. Đọc [Bắt đầu](getting-started/index.md)
+2. Làm theo [Khởi động Nhanh](getting-started/quickstart.md)
+3. Khám phá [Hướng dẫn Sử dụng](user-guide/index.md)
 
-=== "Tôi muốn sử dụng nó"
+**Tôi muốn sử dụng nó:**
 
-    **Thiết lập Thành phố của bạn**:
+**Thiết lập Thành phố của bạn**:
 
-    1. [Cài đặt LegoCity](installation/index.md)
-    2. [Cấu hình Data Sources](configuration/data-sources.md)
-    3. [Tạo Dashboard Pages](user-guide/index.md)
+1. [Cài đặt LegoCity](installation/index.md)
+2. [Cấu hình Data Sources](configuration/data-sources.md)
+3. [Tạo Dashboard Pages](user-guide/index.md)
 
-=== "Tôi muốn xây dựng"
+**Tôi muốn xây dựng:**
 
-    **Bắt đầu Phát triển**:
+**Bắt đầu Phát triển**:
 
-    1. [Môi trường Phát triển](installation/development.md)
-    2. [Hướng dẫn Phát triển](development/index.md)
-    3. [Tạo Custom Blocks](development/blocks.md)
+1. [Môi trường Phát triển](installation/development.md)
+2. [Hướng dẫn Phát triển](development/index.md)
+3. [Tạo Custom Blocks](development/blocks.md)
 
-=== "Tôi muốn triển khai"
+**Tôi muốn triển khai:**
 
-    **Triển khai lên Production**:
+**Triển khai lên Production**:
 
-    1. [Tổng quan Triển khai](deployment/index.md)
-    2. Chọn phương thức triển khai
-    3. [Hướng dẫn Vận hành](deployment/operations.md)
+1. [Tổng quan Triển khai](deployment/index.md)
+2. Chọn phương thức triển khai
+3. [Hướng dẫn Vận hành](deployment/operations.md)
 
 ---
 

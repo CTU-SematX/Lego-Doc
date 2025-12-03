@@ -2,14 +2,15 @@
 
 Hướng dẫn này giải thích cách thiết lập một môi trường development local cho LegoCity.
 
-!!! info "Đối tượng Mục tiêu"
+::: info Đối tượng Mục tiêu
 Hướng dẫn này dành cho contributors muốn:
 
-    - Chạy dashboard và PayloadCMS locally
-    - Thử nghiệm với blocks và views mới
-    - Phát triển update servers và proxy behaviour
+- Chạy dashboard và PayloadCMS locally
+- Thử nghiệm với blocks và views mới
+- Phát triển update servers và proxy behaviour
 
-    Các hướng dẫn là generic và có thể được áp dụng cho việc bạn chạy everything với Docker, trên VM, hoặc trực tiếp trên laptop của bạn.
+Các hướng dẫn là generic và có thể được áp dụng cho việc bạn chạy everything với Docker, trên VM, hoặc trực tiếp trên laptop của bạn.
+:::
 
 ---
 
@@ -17,51 +18,58 @@ Hướng dẫn này dành cho contributors muốn:
 
 ### Công cụ Bắt buộc
 
-=== "Git"
+**Git:**
+
 Clone repository và quản lý branches
 
-    ```bash
-    git --version
-    ```
+```bash
+git --version
+```
 
-=== "Node.js"
+**Node.js:**
+
 Sử dụng một version tương thích với dashboard và PayloadCMS
 
-    - Kiểm tra `.nvmrc` hoặc field `engines` trong `package.json`
-    - Nếu không, sử dụng phiên bản LTS gần đây
+- Kiểm tra `.nvmrc` hoặc field `engines` trong `package.json`
+- Nếu không, sử dụng phiên bản LTS gần đây
 
-    ```bash
-    node --version
-    ```
+```bash
+node --version
+```
 
-=== "Package Manager"
+**Package Manager:**
+
 Sử dụng package manager được chỉ định bởi repository:
 
-    - `pnpm-lock.yaml` có mặt → sử dụng **pnpm**
-    - `yarn.lock` có mặt → sử dụng **yarn**
-    - Nếu không → sử dụng **npm**
+- `pnpm-lock.yaml` có mặt → sử dụng **pnpm**
+- `yarn.lock` có mặt → sử dụng **yarn**
+- Nếu không → sử dụng **npm**
 
-=== "Docker (Tùy chọn)"
+**Docker (Tùy chọn):**
+
 Được khuyến nghị cho việc chạy supporting services
 
-    - Context broker
-    - Databases
-    - Đơn giản hóa việc khớp deployment configuration
+- Context broker
+- Databases
+- Đơn giản hóa việc khớp deployment configuration
 
-    ```bash
-    docker --version
-    docker compose version
-    ```
+```bash
+docker --version
+docker compose version
+```
 
 ### Mapbox Access Token
 
-!!! warning "Bắt buộc cho Map Rendering"
+::: warning Bắt buộc cho Map Rendering
 Bạn sẽ cần một Mapbox access token để render maps trong dashboard.
 
-    Lấy một cái tại [mapbox.com](https://www.mapbox.com/) và cung cấp nó qua:
-    ```
-    NEXT_PUBLIC_MAPBOX_TOKEN=pk.your_token_here
-    ```
+Lấy một cái tại [mapbox.com](https://www.mapbox.com/) và cung cấp nó qua:
+
+```
+NEXT_PUBLIC_MAPBOX_TOKEN=pk.your_token_here
+```
+
+:::
 
 ---
 
@@ -102,23 +110,26 @@ git checkout -b feature/my-change
 
 ### 3. Cài đặt Dependencies
 
-=== "Sử dụng pnpm"
-`bash
-    cd dashboard
-    pnpm install
-    `
+**Sử dụng pnpm:**
 
-=== "Sử dụng npm"
-`bash
-    cd dashboard
-    npm install
-    `
+```bash
+cd dashboard
+pnpm install
+```
 
-=== "Sử dụng yarn"
-`bash
-    cd dashboard
-    yarn install
-    `
+**Sử dụng npm:**
+
+```bash
+cd dashboard
+npm install
+```
+
+**Sử dụng yarn:**
+
+```bash
+cd dashboard
+yarn install
+```
 
 ---
 
@@ -128,7 +139,8 @@ git checkout -b feature/my-change
 
 Tạo `.env` hoặc `.env.local` trong thư mục `dashboard/`:
 
-```bash title="dashboard/.env"
+```bash
+# dashboard/.env
 # Cấu hình API
 NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
 
@@ -149,8 +161,9 @@ BROKER_WRITE_KEY_ENVIRONMENT=key_env
 BROKER_WRITE_KEY_MOBILITY=key_mobility
 ```
 
-!!! danger "Lưu ý Bảo mật"
+::: danger Lưu ý Bảo mật
 Không bao giờ commit các file `.env` chứa secrets thực vào version control!
+:::
 
 ---
 
@@ -194,23 +207,26 @@ Chạy services riêng lẻ:
 
 #### Khởi động Dashboard
 
-=== "pnpm"
-`bash
-    cd dashboard
-    pnpm dev
-    `
+**pnpm:**
 
-=== "npm"
-`bash
-    cd dashboard
-    npm run dev
-    `
+```bash
+cd dashboard
+pnpm dev
+```
 
-=== "yarn"
-`bash
-    cd dashboard
-    yarn dev
-    `
+**npm:**
+
+```bash
+cd dashboard
+npm run dev
+```
+
+**yarn:**
+
+```bash
+cd dashboard
+yarn dev
+```
 
 #### Khởi động PayloadCMS
 
@@ -221,8 +237,9 @@ cd cms  # hoặc thư mục liên quan
 npm run dev
 ```
 
-!!! tip "Kết nối Database"
+::: tip Kết nối Database
 Đảm bảo MongoDB có thể truy cập được trước khi khởi động PayloadCMS
+:::
 
 ---
 
@@ -261,8 +278,9 @@ Các lệnh phổ biến từ thư mục `dashboard/`:
 | `npm run lint`  | Lint codebase                       |
 | `npm run test`  | Chạy tests                          |
 
-!!! tip "Kiểm tra package.json"
+::: tip Kiểm tra package.json
 Các lệnh thực tế có thể khác nhau. Luôn kiểm tra `package.json` cho các scripts có sẵn.
+:::
 
 ---
 
@@ -344,17 +362,18 @@ Error: NEXT_PUBLIC_MAPBOX_TOKEN is not defined
 
 ## Tóm tắt
 
-!!! success "Development Environment Sẵn sàng"
+::: success Development Environment Sẵn sàng
 Bạn bây giờ nên có:
 
-    -  Repository đã clone và dependencies đã cài đặt
-    -  Environment variables đã cấu hình
-    -  Services đang chạy (Docker hoặc manual)
-    -  Admin account đã tạo
-    -  Hiểu biết về development workflow
+- Repository đã clone và dependencies đã cài đặt
+- Environment variables đã cấu hình
+- Services đang chạy (Docker hoặc manual)
+- Admin account đã tạo
+- Hiểu biết về development workflow
 
 **Các Bước Tiếp theo:**
 
 - [Tạo custom blocks](../development/blocks.md)
 - [Viết PayloadCMS plugins](../development/plugins.md)
 - [Thêm seed data](../development/seed-data.md)
+  :::

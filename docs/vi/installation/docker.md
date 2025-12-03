@@ -20,44 +20,44 @@ Chạy LegoCity trong containers với Docker Compose - cách nhanh nhất để
 
 ### Cài đặt Docker
 
-=== "Windows"
+**Windows:**
 
-    Tải và cài đặt [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
+Tải và cài đặt [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
 
-    ```powershell
-    # Kiểm tra cài đặt
-    docker --version
-    docker compose version
-    ```
+```powershell
+# Kiểm tra cài đặt
+docker --version
+docker compose version
+```
 
-=== "macOS"
+**macOS:**
 
-    Tải và cài đặt [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
+Tải và cài đặt [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
 
-    ```bash
-    # Kiểm tra cài đặt
-    docker --version
-    docker compose version
-    ```
+```bash
+# Kiểm tra cài đặt
+docker --version
+docker compose version
+```
 
-=== "Linux"
+**Linux:**
 
-    ```bash
-    # Cài Docker Engine
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
+```bash
+# Cài Docker Engine
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-    # Cài Docker Compose
-    sudo apt install docker-compose-plugin
+# Cài Docker Compose
+sudo apt install docker-compose-plugin
 
-    # Thêm user vào docker group
-    sudo usermod -aG docker $USER
-    newgrp docker
+# Thêm user vào docker group
+sudo usermod -aG docker $USER
+newgrp docker
 
-    # Kiểm tra
-    docker --version
-    docker compose version
-    ```
+# Kiểm tra
+docker --version
+docker compose version
+```
 
 ### Yêu cầu hệ thống
 

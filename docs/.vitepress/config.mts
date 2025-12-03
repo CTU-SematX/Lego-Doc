@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid({
   title: "LegoCity Docs",
   description: "Smart City Builder platform for modern, map-based urban dashboards",
   
@@ -14,7 +15,7 @@ export default defineConfig({
   // Ignore dead links during build (set to false to check links)
   ignoreDeadLinks: true,
   
-  // Locales for multi-language support
+    // Locales for multi-language support
   locales: {
     root: {
       label: 'English',

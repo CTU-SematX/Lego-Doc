@@ -2,12 +2,15 @@
 
 Hướng dẫn này bao gồm các trường hợp sử dụng thực tế nơi AI có thể hỗ trợ trong việc xây dựng và quản lý bảng điều khiển thành phố thông minh, với các giới hạn và thực hành tốt nhất phù hợp.
 
-!!! warning "AI là tùy chọn và hỗ trợ"
+::: warning AI là tùy chọn và hỗ trợ
 Tính năng AI là **trợ giúp**, không phải chức năng cốt lõi:
 
-    - ✅ Tìm các trường hợp sử dụng nơi AI **tiết kiệm thời gian** mà không làm giảm chất lượng
-    - ✅ Giữ con người **kiểm soát** các quyết định quan trọng
-    - ❌ Không dựa vào AI cho **bảo mật**, **tính toàn vẹn dữ liệu** hoặc **logic hệ thống**---
+- ✅ Tìm các trường hợp sử dụng nơi AI **tiết kiệm thời gian** mà không làm giảm chất lượng
+- ✅ Giữ con người **kiểm soát** các quyết định quan trọng
+- ❌ Không dựa vào AI cho **bảo mật**, **tính toàn vẹn dữ liệu** hoặc **logic hệ thống**
+  :::
+
+---
 
 ## Các trường hợp sử dụng được khuyến nghị
 

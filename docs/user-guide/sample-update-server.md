@@ -110,14 +110,14 @@ Typical configuration variables:
     List of locations or station identifiers to be monitored (format decided by the implementation).
 
 Example `.env` for development:
-
+```bash
     BROKER_URL=https://dev-broker.example.com/ngsi-ld/v1
     BROKER_WRITE_KEY=dev-broker-write-key
     WEATHER_API_URL=https://api.example.com/weather
     WEATHER_API_KEY=dev-weather-api-key
     UPDATE_INTERVAL_SECONDS=300
     LOCATIONS=CTU_CAMPUS,CTU_CITY_CENTER
-
+```
 The actual names and formats may differ, but they must be documented clearly in the sample server README.
 
 ---

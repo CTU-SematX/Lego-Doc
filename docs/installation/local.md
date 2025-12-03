@@ -2,14 +2,15 @@
 
 This guide explains how to set up a local development environment for LegoCity.
 
-!!! info "Target Audience"
+::: info Target Audience
 This guide is for contributors who want to:
 
-    - Run the dashboard and PayloadCMS locally
-    - Experiment with new blocks and views
-    - Develop update servers and proxy behaviour
+- Run the dashboard and PayloadCMS locally
+- Experiment with new blocks and views
+- Develop update servers and proxy behaviour
 
 The instructions are generic and can be applied whether you run everything with Docker, on a VM, or directly on your laptop.
+:::
 
 ---
 
@@ -17,51 +18,50 @@ The instructions are generic and can be applied whether you run everything with 
 
 ### Required Tools
 
-=== "Git"
-Clone the repository and manage branches
+**Git** - Clone the repository and manage branches
 
-    ```bash
-    git --version
-    ```
+```bash
+git --version
+```
 
-=== "Node.js"
-Use a version compatible with the dashboard and PayloadCMS
+**Node.js** - Use a version compatible with the dashboard and PayloadCMS
 
-    - Check `.nvmrc` or `engines` field in `package.json`
-    - Otherwise, use a recent LTS version
+- Check `.nvmrc` or `engines` field in `package.json`
+- Otherwise, use a recent LTS version
 
-    ```bash
-    node --version
-    ```
+```bash
+node --version
+```
 
-=== "Package Manager"
-Use the package manager indicated by the repository:
+**Package Manager** - Use the package manager indicated by the repository:
 
-    - `pnpm-lock.yaml` present → use **pnpm**
-    - `yarn.lock` present → use **yarn**
-    - Otherwise → use **npm**
+- `pnpm-lock.yaml` present → use **pnpm**
+- `yarn.lock` present → use **yarn**
+- Otherwise → use **npm**
 
-=== "Docker (Optional)"
-Recommended for running supporting services
+**Docker (Optional)** - Recommended for running supporting services
 
-    - Context broker
-    - Databases
-    - Simplifies matching deployment configuration
+- Context broker
+- Databases
+- Simplifies matching deployment configuration
 
-    ```bash
-    docker --version
-    docker compose version
-    ```
+```bash
+docker --version
+docker compose version
+```
 
 ### Mapbox Access Token
 
-!!! warning "Required for Map Rendering"
+::: warning Required for Map Rendering
 You'll need a Mapbox access token to render maps in the dashboard.
 
-    Get one at [mapbox.com](https://www.mapbox.com/) and provide it via:
-    ```
-    NEXT_PUBLIC_MAPBOX_TOKEN=pk.your_token_here
-    ```
+Get one at [mapbox.com](https://www.mapbox.com/) and provide it via:
+
+```
+NEXT_PUBLIC_MAPBOX_TOKEN=pk.your_token_here
+```
+
+:::
 
 ---
 
@@ -102,23 +102,26 @@ git checkout -b feature/my-change
 
 ### 3. Install Dependencies
 
-=== "Using pnpm"
-`bash
-    cd dashboard
-    pnpm install
-    `
+**Using pnpm:**
 
-=== "Using npm"
-`bash
-    cd dashboard
-    npm install
-    `
+```bash
+cd dashboard
+pnpm install
+```
 
-=== "Using yarn"
-`bash
-    cd dashboard
-    yarn install
-    `
+**Using npm:**
+
+```bash
+cd dashboard
+npm install
+```
+
+**Using yarn:**
+
+```bash
+cd dashboard
+yarn install
+```
 
 ---
 
@@ -128,7 +131,8 @@ git checkout -b feature/my-change
 
 Create `.env` or `.env.local` in the `dashboard/` directory:
 
-```bash title="dashboard/.env"
+```bash
+# dashboard/.env
 # API Configuration
 NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
 
@@ -149,8 +153,9 @@ BROKER_WRITE_KEY_ENVIRONMENT=key_env
 BROKER_WRITE_KEY_MOBILITY=key_mobility
 ```
 
-!!! danger "Security Note"
+::: danger Security Note
 Never commit `.env` files containing real secrets to version control!
+:::
 
 ---
 
@@ -194,23 +199,26 @@ Run services individually:
 
 #### Start Dashboard
 
-=== "pnpm"
-`bash
-    cd dashboard
-    pnpm dev
-    `
+**Using pnpm:**
 
-=== "npm"
-`bash
-    cd dashboard
-    npm run dev
-    `
+```bash
+cd dashboard
+pnpm dev
+```
 
-=== "yarn"
-`bash
-    cd dashboard
-    yarn dev
-    `
+**Using npm:**
+
+```bash
+cd dashboard
+npm run dev
+```
+
+**Using yarn:**
+
+```bash
+cd dashboard
+yarn dev
+```
 
 #### Start PayloadCMS
 
@@ -221,10 +229,9 @@ cd cms  # or relevant directory
 npm run dev
 ```
 
-!!! tip "Database Connection"
+::: tip Database Connection
 Ensure MongoDB is accessible before starting PayloadCMS
-
----
+:::
 
 ## Initial Setup
 
@@ -247,8 +254,6 @@ npm run seed
 
 See [Seed Database guide](../development/seed-data.md) for details.
 
----
-
 ## Development Commands
 
 Common commands from `dashboard/` directory:
@@ -261,10 +266,9 @@ Common commands from `dashboard/` directory:
 | `npm run lint`  | Lint codebase                    |
 | `npm run test`  | Run tests                        |
 
-!!! tip "Check package.json"
+::: tip Check package.json
 Actual commands may vary. Always check `package.json` for available scripts.
-
----
+:::
 
 ## Git Workflow
 
@@ -340,18 +344,17 @@ Error: NEXT_PUBLIC_MAPBOX_TOKEN is not defined
 
 **Solution:** Check `.env` file exists and contains required variables.
 
----
-
 ## Summary
 
-!!! success "Development Environment Ready"
+::: success Development Environment Ready
 You should now have:
 
-    -  Repository cloned and dependencies installed
-    -  Environment variables configured
-    -  Services running (Docker or manual)
-    -  Admin account created
-    -  Understanding of development workflow
+- Repository cloned and dependencies installed
+- Environment variables configured
+- Services running (Docker or manual)
+- Admin account created
+- Understanding of development workflow
+  :::
 
 **Next Steps:**
 

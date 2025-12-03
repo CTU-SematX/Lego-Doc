@@ -6,7 +6,7 @@ This page describes how to create and use seed data in LegoCity for:
 - PayloadCMS (views, blocks, layers)
 - Repeatable demos and test cases
 
-!!! info "Why Seed Data?"
+::: info Why Seed Data?
 Seed data allows you to:
 
     - 🚀 Set up a realistic smart city environment quickly
@@ -37,7 +37,7 @@ Seed data should be:
 - ✅ Stable identifiers for docs and tests
 - ✅ Consistent across environments
 
-!!! tip "Aim for Quality Over Quantity"
+::: tip Aim for Quality Over Quantity
 Don't model an entire city—provide:
 
     - A small number of districts or areas
@@ -52,50 +52,58 @@ LegoCity uses three main categories of seed data:
 
 ### 1. Broker Entities
 
-=== "NGSI-LD Entities"
+**NGSI-LD Entities:**
+
 NGSI-LD entities representing city data:
 
-    - `WeatherObserved` - Weather stations
-    - `AirQualityObserved` - Air quality sensors
-    - `ParkingSpot` - Parking facilities
-    - `FloodRiskZone` - Flood risk areas
-    - `TrafficFlowObserved` - Traffic sensors
+- `WeatherObserved` - Weather stations
+- `AirQualityObserved` - Air quality sensors
+- `ParkingSpot` - Parking facilities
+- `FloodRiskZone` - Flood risk areas
+- `TrafficFlowObserved` - Traffic sensors
 
-=== "Entity Structure"
-`json
-    {
-      "id": "urn:ngsi-ld:WeatherObserved:demo:ctu-campus",
-      "type": "WeatherObserved",
-      "temperature": {
-        "type": "Property",
-        "value": 28.5,
-        "unitCode": "CEL"
-      },
-      "location": {
-        "type": "GeoProperty",
-        "value": {
-          "type": "Point",
-          "coordinates": [105.7698, 10.0301]
-        }
-      }
+**Entity Structure:**
+
+```json
+{
+  "id": "urn:ngsi-ld:WeatherObserved:demo:ctu-campus",
+  "type": "WeatherObserved",
+  "temperature": {
+    "type": "Property",
+    "value": 28.5,
+    "unitCode": "CEL"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [105.7698, 10.0301]
     }
-    `
+  }
+}
+```
 
 ### 2. PayloadCMS Configuration
 
-=== "Collections" - **Layers** - Data sources and styling - **Views** - Map dashboards and layouts - **Blocks** - UI components configuration - **Users** - Demo users and roles (if needed)
+**Collections:**
 
-=== "Example Layer"
-`json
-    {
-      "name": "Weather Stations",
-      "slug": "weather-stations",
-      "entityType": "WeatherObserved",
-      "domain": "environment",
-      "mapboxLayerId": "weather-layer",
-      "visible": true
-    }
-    `
+- **Layers** - Data sources and styling
+- **Views** - Map dashboards and layouts
+- **Blocks** - UI components configuration
+- **Users** - Demo users and roles (if needed)
+
+**Example Layer:**
+
+```json
+{
+  "name": "Weather Stations",
+  "slug": "weather-stations",
+  "entityType": "WeatherObserved",
+  "domain": "environment",
+  "mapboxLayerId": "weather-layer",
+  "visible": true
+}
+```
 
 ### 3. Supporting Reference Data
 
@@ -135,70 +143,79 @@ urn:ngsi-ld:{EntityType}:demo:{location}
 
 #### Environment Domain
 
-=== "Weather Stations"
+**Weather Stations:**
+
 Create a few `WeatherObserved` entities:
 
-    - At points of interest (university, city center, suburbs)
-    - With temperature, humidity, precipitation
-    - Different times of day or weather conditions
+- At points of interest (university, city center, suburbs)
+- With temperature, humidity, precipitation
+- Different times of day or weather conditions
 
-=== "Air Quality"
+**Air Quality:**
+
 Create `AirQualityObserved` entities:
 
-    - Near major roads or industrial areas
-    - With PM2.5, PM10, NO2 measurements
-    - Various quality levels (good, moderate, unhealthy)
+- Near major roads or industrial areas
+- With PM2.5, PM10, NO2 measurements
+- Various quality levels (good, moderate, unhealthy)
 
 #### Water and Flooding Domain
 
-=== "Flood Risk Zones"
+**Flood Risk Zones:**
+
 Create `FloodRiskZone` entities:
 
-    - Polygons representing vulnerable areas
-    - Risk levels (low, medium, high)
-    - Near rivers or low-lying areas
+- Polygons representing vulnerable areas
+- Risk levels (low, medium, high)
+- Near rivers or low-lying areas
 
-=== "Water Quality"
+**Water Quality:**
+
 Create `WaterQualityObserved` entities:
 
-    - At river monitoring points
-    - pH, turbidity, dissolved oxygen
-    - Upstream and downstream comparisons
+- At river monitoring points
+- pH, turbidity, dissolved oxygen
+- Upstream and downstream comparisons
 
 #### Mobility Domain
 
-=== "Parking"
+**Parking:**
+
 Create `ParkingSpot` or `ParkingArea` entities:
 
-    - Small number of parking areas (5-10)
-    - Available vs total spot numbers
-    - Different occupancy levels
+- Small number of parking areas (5-10)
+- Available vs total spot numbers
+- Different occupancy levels
 
-=== "Traffic"
+**Traffic:**
+
 Create `TrafficFlowObserved` entities:
 
-    - Major intersections
-    - Vehicle count, average speed
-    - Different time periods (rush hour, off-peak)
+- Major intersections
+- Vehicle count, average speed
+- Different time periods (rush hour, off-peak)
 
 ### Running Broker Seed Scripts
 
 Common patterns for seeding:
 
-=== "Makefile Target"
-`bash
-    make seed-broker
-    `
+**Makefile Target:**
 
-=== "npm Script"
-`bash
-    npm run seed:broker
-    `
+```bash
+make seed-broker
+```
 
-=== "Docker Container"
-`bash
-    docker compose run --rm seed-broker
-    `
+**npm Script:**
+
+```bash
+npm run seed:broker
+```
+
+**Docker Container:**
+
+```bash
+docker compose run --rm seed-broker
+```
 
 ### Seed Script Workflow
 
@@ -300,33 +317,36 @@ PayloadCMS seed data covers configuration and content:
 
 ### Seeding Approach
 
-=== "JSON Fixtures"
+**JSON Fixtures:**
+
 Import via PayloadCMS code:
 
-    ```typescript
-    import { seed } from '@payloadcms/payload'
-    import layersData from './seeds/layers.json'
+```typescript
+import { seed } from "@payloadcms/payload";
+import layersData from "./seeds/layers.json";
 
-    await seed('layers', layersData)
-    ```
+await seed("layers", layersData);
+```
 
-=== "API Scripts"
+**API Scripts:**
+
 Call PayloadCMS REST API:
 
-    ```typescript
-    const response = await fetch('/api/layers', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(layerData)
-    })
-    ```
+```typescript
+const response = await fetch("/api/layers", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(layerData),
+});
+```
 
-=== "Database Direct"
+**Database Direct:**
+
 Insert directly to database (development only):
 
-    ```typescript
-    await db.collection('layers').insertMany(layersData)
-    ```
+```typescript
+await db.collection("layers").insertMany(layersData);
+```
 
 ---
 
@@ -336,11 +356,23 @@ To ensure seeds work together:
 
 ### Broker Entity Requirements
 
-!!! warning "Critical Alignment" - ✅ Use entity types that PayloadCMS expects - ✅ Use stable, documented IDs - ✅ Place entities within map bounds of seeded views - ✅ Use attribute names matching layer configurations
+::: warning Critical Alignment
+
+- ✅ Use entity types that PayloadCMS expects
+- ✅ Use stable, documented IDs
+- ✅ Place entities within map bounds of seeded views
+- ✅ Use attribute names matching layer configurations
+  :::
 
 ### PayloadCMS Configuration Requirements
 
-!!! warning "Critical Alignment" - ✅ Refer to correct entity types and domains - ✅ Use correct Mapbox layer IDs (if applicable) - ✅ Define bounding boxes that include seeded entities - ✅ Match attribute names in filters and displays
+::: warning Critical Alignment
+
+- ✅ Refer to correct entity types and domains
+- ✅ Use correct Mapbox layer IDs (if applicable)
+- ✅ Define bounding boxes that include seeded entities
+- ✅ Match attribute names in filters and displays
+  :::
 
 ### Demo City Profile
 
@@ -386,49 +418,55 @@ entities:
 
 Provide a convenient command to seed everything:
 
-=== "Makefile"
-`bash
-    make seed-all
-    `
+**Makefile:**
 
-    Internally runs:
-    ```makefile
-    seed-all: clean-data seed-broker seed-payload
-    	@echo "All seeds complete!"
-    ```
+```bash
+make seed-all
+```
 
-=== "npm Scripts"
-`bash
-    npm run seed
-    `
+Internally runs:
 
-    In `package.json`:
-    ```json
-    {
-      "scripts": {
-        "seed": "npm run seed:clean && npm run seed:broker && npm run seed:payload",
-        "seed:clean": "node scripts/clean-data.js",
-        "seed:broker": "node scripts/seed-broker.js",
-        "seed:payload": "node scripts/seed-payload.js"
-      }
-    }
-    ```
+```makefile
+seed-all: clean-data seed-broker seed-payload
+	@echo "All seeds complete!"
+```
 
-=== "Docker Compose"
-`bash
-    docker compose run --rm seed
-    `
+**npm Scripts:**
 
-    In `docker-compose.yml`:
-    ```yaml
-    services:
-      seed:
-        image: legocity-seed
-        depends_on:
-          - broker
-          - mongodb
-        command: ["sh", "-c", "npm run seed:all"]
-    ```
+```bash
+npm run seed
+```
+
+In `package.json`:
+
+```json
+{
+  "scripts": {
+    "seed": "npm run seed:clean && npm run seed:broker && npm run seed:payload",
+    "seed:clean": "node scripts/clean-data.js",
+    "seed:broker": "node scripts/seed-broker.js",
+    "seed:payload": "node scripts/seed-payload.js"
+  }
+}
+```
+
+**Docker Compose:**
+
+```bash
+docker compose run --rm seed
+```
+
+In `docker-compose.yml`:
+
+```yaml
+services:
+  seed:
+    image: legocity-seed
+    depends_on:
+      - broker
+      - mongodb
+    command: ["sh", "-c", "npm run seed:all"]
+```
 
 ### Seed Workflow
 
@@ -447,7 +485,7 @@ graph TD
 
 ### Developer Workflow
 
-!!! example "Typical Usage"
+::: details Typical Usage
 **After cloning the repo:**
 `bash
     git clone https://github.com/CTU-SematX/LegoCity.git
@@ -468,17 +506,45 @@ graph TD
 
 ### Best Practices
 
-=== "Keep It Small"
-!!! success "Focus on Quality" - Only seed entities needed to demonstrate functionality - Avoid large datasets that are hard to understand - 5-10 entities per type is usually sufficient - Quality examples > Quantity
+**Keep It Small:**
 
-=== "Version Control"
-!!! success "Treat as Code" - Store seeds in version control - Review changes via pull requests - Use meaningful commit messages - Tag seeds with version numbers
+::: tip Focus on Quality
 
-=== "Documentation"
-!!! success "Keep Docs Updated" - Document new entity types - Mention new example views - Update scenario descriptions - Link seeds to use cases
+- Only seed entities needed to demonstrate functionality
+- Avoid large datasets that are hard to understand
+- 5-10 entities per type is usually sufficient
+- Quality examples > Quantity
+  :::
 
-=== "Versioning"
-!!! success "Align with Releases" - Tag seed sets with release versions - Maintain compatibility with docs - Provide migration guides for seed changes - Archive old seed versions
+**Version Control:**
+
+::: tip Treat as Code
+
+- Store seeds in version control
+- Review changes via pull requests
+- Use meaningful commit messages
+- Tag seeds with version numbers
+  :::
+
+**Documentation:**
+
+::: tip Keep Docs Updated
+
+- Document new entity types
+- Mention new example views
+- Update scenario descriptions
+- Link seeds to use cases
+  :::
+
+**Versioning:**
+
+::: tip Align with Releases
+
+- Tag seed sets with release versions
+- Maintain compatibility with docs
+- Provide migration guides for seed changes
+- Archive old seed versions
+  :::
 
 ### Seed File Structure
 
@@ -513,161 +579,172 @@ Design seeds around concrete scenarios:
 
 ### Scenario 1: Flooding Risk During Heavy Rainfall
 
-=== "Description"
+**Description:**
+
 **Question:** "How does flooding risk evolve during heavy rainfall?"
 
-    **Data needed:**
-    - Environment: Weather stations with precipitation data
-    - Water: Flood risk zones with varying risk levels
-    - Maps: Overlays showing risk zones and rainfall intensity
+**Data needed:**
 
-=== "Entities"
+- Environment: Weather stations with precipitation data
+- Water: Flood risk zones with varying risk levels
+- Maps: Overlays showing risk zones and rainfall intensity
 
-````json
+**Entities:**
+
+```json
 // WeatherObserved with heavy rain
 {
-"id": "urn:ngsi-ld:WeatherObserved:demo:riverside",
-"type": "WeatherObserved",
-"precipitation": { "value": 50, "unitCode": "MMT" },
-"location": { "coordinates": [105.77, 10.03] }
+  "id": "urn:ngsi-ld:WeatherObserved:demo:riverside",
+  "type": "WeatherObserved",
+  "precipitation": { "value": 50, "unitCode": "MMT" },
+  "location": { "coordinates": [105.77, 10.03] }
 }
 
-    // FloodRiskZone - high risk
-    {
-      "id": "urn:ngsi-ld:FloodRiskZone:demo:riverside-district",
-      "type": "FloodRiskZone",
-      "riskLevel": { "value": "high" },
-      "location": { "type": "Polygon", "coordinates": [...] }
-    }
-    ```
+// FloodRiskZone - high risk
+{
+  "id": "urn:ngsi-ld:FloodRiskZone:demo:riverside-district",
+  "type": "FloodRiskZone",
+  "riskLevel": { "value": "high" },
+  "location": { "type": "Polygon", "coordinates": [...] }
+}
+```
 
-=== "PayloadCMS View"
-`typescript
-    {
-      name: "Flood Monitoring",
-      slug: "flood-monitoring",
-      layers: [
-        "weather-stations",
-        "flood-risk-zones",
-        "rainfall-intensity"
-      ],
-      blocks: [
-        { type: "legend", layers: ["flood-risk-zones"] },
-        { type: "kpiCard", metric: "rainfall:current" }
-      ]
-    }
-    `
+**PayloadCMS View:**
+
+```typescript
+{
+  name: "Flood Monitoring",
+  slug: "flood-monitoring",
+  layers: [
+    "weather-stations",
+    "flood-risk-zones",
+    "rainfall-intensity"
+  ],
+  blocks: [
+    { type: "legend", layers: ["flood-risk-zones"] },
+    { type: "kpiCard", metric: "rainfall:current" }
+  ]
+}
+```
 
 ### Scenario 2: Parking Availability at Peak Hours
 
-=== "Description"
+**Description:**
+
 **Question:** "Which parking areas are near capacity at peak hours?"
 
-    **Data needed:**
-    - Mobility: Parking areas with occupancy data
-    - UI: KPI blocks and visual indicators
-    - Maps: Color-coded parking availability
+**Data needed:**
 
-=== "Entities"
+- Mobility: Parking areas with occupancy data
+- UI: KPI blocks and visual indicators
+- Maps: Color-coded parking availability
+
+**Entities:**
+
 ```json
 // High occupancy parking
 {
-"id": "urn:ngsi-ld:ParkingSpot:demo:downtown-p1",
-"type": "ParkingSpot",
-"availableSpotNumber": { "value": 5 },
-"totalSpotNumber": { "value": 100 },
-"location": { "coordinates": [105.78, 10.035] }
+  "id": "urn:ngsi-ld:ParkingSpot:demo:downtown-p1",
+  "type": "ParkingSpot",
+  "availableSpotNumber": { "value": 5 },
+  "totalSpotNumber": { "value": 100 },
+  "location": { "coordinates": [105.78, 10.035] }
 }
 
-    // Low occupancy parking
-    {
-      "id": "urn:ngsi-ld:ParkingSpot:demo:suburb-p3",
-      "type": "ParkingSpot",
-      "availableSpotNumber": { "value": 85 },
-      "totalSpotNumber": { "value": 100 },
-      "location": { "coordinates": [105.76, 10.025] }
-    }
-    ```
+// Low occupancy parking
+{
+  "id": "urn:ngsi-ld:ParkingSpot:demo:suburb-p3",
+  "type": "ParkingSpot",
+  "availableSpotNumber": { "value": 85 },
+  "totalSpotNumber": { "value": 100 },
+  "location": { "coordinates": [105.76, 10.025] }
+}
+```
 
-=== "PayloadCMS View"
-`typescript
+**PayloadCMS View:**
+
+```typescript
+{
+  name: "Parking Management",
+  slug: "parking-management",
+  layers: ["parking-areas"],
+  blocks: [
     {
-      name: "Parking Management",
-      slug: "parking-management",
-      layers: ["parking-areas"],
-      blocks: [
-        {
-          type: "kpiCard",
-          title: "Available Spots",
-          metric: "parking:total-available"
-        },
-        {
-          type: "chart",
-          title: "Occupancy by Hour",
-          metric: "parking:occupancy-rate"
-        }
-      ]
+      type: "kpiCard",
+      title: "Available Spots",
+      metric: "parking:total-available"
+    },
+    {
+      type: "chart",
+      title: "Occupancy by Hour",
+      metric: "parking:occupancy-rate"
     }
-    `
+  ]
+}
+```
 
 ### Scenario 3: Air Quality Near Major Roads
 
-=== "Description"
+**Description:**
+
 **Question:** "What is the air quality near major roads?"
 
-    **Data needed:**
-    - Environment: Air quality sensors with PM2.5, NO2
-    - Reference: Road network overlay
-    - UI: Color-coded quality indicators
+**Data needed:**
 
-=== "Entities"
+- Environment: Air quality sensors with PM2.5, NO2
+- Reference: Road network overlay
+- UI: Color-coded quality indicators
+
+**Entities:**
+
 ```json
 // Poor air quality near highway
 {
-"id": "urn:ngsi-ld:AirQualityObserved:demo:highway-junction",
-"type": "AirQualityObserved",
-"pm25": { "value": 75, "unitCode": "GQ" },
-"no2": { "value": 120, "unitCode": "GQ" },
-"airQualityLevel": { "value": "unhealthy" },
-"location": { "coordinates": [105.78, 10.04] }
+  "id": "urn:ngsi-ld:AirQualityObserved:demo:highway-junction",
+  "type": "AirQualityObserved",
+  "pm25": { "value": 75, "unitCode": "GQ" },
+  "no2": { "value": 120, "unitCode": "GQ" },
+  "airQualityLevel": { "value": "unhealthy" },
+  "location": { "coordinates": [105.78, 10.04] }
 }
 
-    // Good air quality in park
-    {
-      "id": "urn:ngsi-ld:AirQualityObserved:demo:city-park",
-      "type": "AirQualityObserved",
-      "pm25": { "value": 15, "unitCode": "GQ" },
-      "no2": { "value": 30, "unitCode": "GQ" },
-      "airQualityLevel": { "value": "good" },
-      "location": { "coordinates": [105.76, 10.03] }
-    }
-    ```
+// Good air quality in park
+{
+  "id": "urn:ngsi-ld:AirQualityObserved:demo:city-park",
+  "type": "AirQualityObserved",
+  "pm25": { "value": 15, "unitCode": "GQ" },
+  "no2": { "value": 30, "unitCode": "GQ" },
+  "airQualityLevel": { "value": "good" },
+  "location": { "coordinates": [105.76, 10.03] }
+}
+```
 
-=== "PayloadCMS View"
-`typescript
+**PayloadCMS View:**
+
+```typescript
+{
+  name: "Air Quality Dashboard",
+  slug: "air-quality",
+  layers: [
+    "air-quality-sensors",
+    "road-network"
+  ],
+  blocks: [
+    { type: "legend", layers: ["air-quality-sensors"] },
     {
-      name: "Air Quality Dashboard",
-      slug: "air-quality",
-      layers: [
-        "air-quality-sensors",
-        "road-network"
-      ],
-      blocks: [
-        { type: "legend", layers: ["air-quality-sensors"] },
-        {
-          type: "kpiCard",
-          title: "Average PM2.5",
-          metric: "airquality:pm25-avg"
-        }
-      ]
+      type: "kpiCard",
+      title: "Average PM2.5",
+      metric: "airquality:pm25-avg"
     }
-    `
+  ]
+}
+```
 
 ---
 
 ## Seed Data Checklist
 
-!!! example "Before Committing Seeds"
+::: details Before Committing Seeds
 **Validation:**
 
     - [ ] All entity IDs follow naming convention
@@ -695,7 +772,7 @@ Design seeds around concrete scenarios:
 
 ## Summary
 
-!!! success "Key Takeaways"
+::: tip Key Takeaways
 **Seed data enables rapid environment setup and testing**
 
     **Three categories:**
@@ -717,4 +794,7 @@ Design seeds around concrete scenarios:
 - [Creating New Blocks](blocks.md)
 - [Entity Types and Management](../user-guide/entities.md)
 - [Local Development Setup](../installation/local.md)
-````
+
+```
+
+```

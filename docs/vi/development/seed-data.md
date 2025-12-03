@@ -52,50 +52,58 @@ LegoCity sử dụng ba categories chính của seed data:
 
 ### 1. Broker Entities
 
-=== "NGSI-LD Entities"
+**NGSI-LD Entities:**
+
 NGSI-LD entities đại diện cho dữ liệu thành phố:
 
-    - `WeatherObserved` - Weather stations
-    - `AirQualityObserved` - Air quality sensors
-    - `ParkingSpot` - Parking facilities
-    - `FloodRiskZone` - Flood risk areas
-    - `TrafficFlowObserved` - Traffic sensors
+- `WeatherObserved` - Weather stations
+- `AirQualityObserved` - Air quality sensors
+- `ParkingSpot` - Parking facilities
+- `FloodRiskZone` - Flood risk areas
+- `TrafficFlowObserved` - Traffic sensors
 
-=== "Entity Structure"
-`json
-    {
-      "id": "urn:ngsi-ld:WeatherObserved:demo:ctu-campus",
-      "type": "WeatherObserved",
-      "temperature": {
-        "type": "Property",
-        "value": 28.5,
-        "unitCode": "CEL"
-      },
-      "location": {
-        "type": "GeoProperty",
-        "value": {
-          "type": "Point",
-          "coordinates": [105.7698, 10.0301]
-        }
-      }
+**Entity Structure:**
+
+```json
+{
+  "id": "urn:ngsi-ld:WeatherObserved:demo:ctu-campus",
+  "type": "WeatherObserved",
+  "temperature": {
+    "type": "Property",
+    "value": 28.5,
+    "unitCode": "CEL"
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [105.7698, 10.0301]
     }
-    `
+  }
+}
+```
 
 ### 2. PayloadCMS Configuration
 
-=== "Collections" - **Layers** - Data sources và styling - **Views** - Map dashboards và layouts - **Blocks** - UI components configuration - **Users** - Demo users và roles (nếu cần)
+**Collections:**
 
-=== "Example Layer"
-`json
-    {
-      "name": "Weather Stations",
-      "slug": "weather-stations",
-      "entityType": "WeatherObserved",
-      "domain": "environment",
-      "mapboxLayerId": "weather-layer",
-      "visible": true
-    }
-    `
+- **Layers** - Data sources và styling
+- **Views** - Map dashboards và layouts
+- **Blocks** - UI components configuration
+- **Users** - Demo users và roles (nếu cần)
+
+**Example Layer:**
+
+```json
+{
+  "name": "Weather Stations",
+  "slug": "weather-stations",
+  "entityType": "WeatherObserved",
+  "domain": "environment",
+  "mapboxLayerId": "weather-layer",
+  "visible": true
+}
+```
 
 ### 3. Supporting Reference Data
 
@@ -135,70 +143,79 @@ urn:ngsi-ld:{EntityType}:demo:{location}
 
 #### Environment Domain
 
-=== "Weather Stations"
+**Weather Stations:**
+
 Create một vài `WeatherObserved` entities:
 
-    - At points of interest (university, city center, suburbs)
-    - With temperature, humidity, precipitation
-    - Different times of day hoặc weather conditions
+- At points of interest (university, city center, suburbs)
+- With temperature, humidity, precipitation
+- Different times of day hoặc weather conditions
 
-=== "Air Quality"
+**Air Quality:**
+
 Create `AirQualityObserved` entities:
 
-    - Near major roads hoặc industrial areas
-    - With PM2.5, PM10, NO2 measurements
-    - Various quality levels (good, moderate, unhealthy)
+- Near major roads hoặc industrial areas
+- With PM2.5, PM10, NO2 measurements
+- Various quality levels (good, moderate, unhealthy)
 
 #### Water and Flooding Domain
 
-=== "Flood Risk Zones"
+**Flood Risk Zones:**
+
 Create `FloodRiskZone` entities:
 
-    - Polygons representing vulnerable areas
-    - Risk levels (low, medium, high)
-    - Near rivers hoặc low-lying areas
+- Polygons representing vulnerable areas
+- Risk levels (low, medium, high)
+- Near rivers hoặc low-lying areas
 
-=== "Water Quality"
+**Water Quality:**
+
 Create `WaterQualityObserved` entities:
 
-    - At river monitoring points
-    - pH, turbidity, dissolved oxygen
-    - Upstream và downstream comparisons
+- At river monitoring points
+- pH, turbidity, dissolved oxygen
+- Upstream và downstream comparisons
 
 #### Mobility Domain
 
-=== "Parking"
+**Parking:**
+
 Create `ParkingSpot` hoặc `ParkingArea` entities:
 
-    - Small number của parking areas (5-10)
-    - Available vs total spot numbers
-    - Different occupancy levels
+- Small number của parking areas (5-10)
+- Available vs total spot numbers
+- Different occupancy levels
 
-=== "Traffic"
+**Traffic:**
+
 Create `TrafficFlowObserved` entities:
 
-    - Major intersections
-    - Vehicle count, average speed
-    - Different time periods (rush hour, off-peak)
+- Major intersections
+- Vehicle count, average speed
+- Different time periods (rush hour, off-peak)
 
 ### Running Broker Seed Scripts
 
 Common patterns cho seeding:
 
-=== "Makefile Target"
-`bash
-    make seed-broker
-    `
+**Makefile Target:**
 
-=== "npm Script"
 `bash
-    npm run seed:broker
-    `
+make seed-broker
+`
 
-=== "Docker Container"
+**npm Script:**
+
 `bash
-    docker compose run --rm seed-broker
-    `
+npm run seed:broker
+`
+
+**Docker Container:**
+
+`bash
+docker compose run --rm seed-broker
+`
 
 ### Seed Script Workflow
 
@@ -300,33 +317,36 @@ PayloadCMS seed data covers configuration và content:
 
 ### Seeding Approach
 
-=== "JSON Fixtures"
+**JSON Fixtures:**
+
 Import qua PayloadCMS code:
 
-    ```typescript
-    import { seed } from '@payloadcms/payload'
-    import layersData from './seeds/layers.json'
+```typescript
+import { seed } from "@payloadcms/payload";
+import layersData from "./seeds/layers.json";
 
-    await seed('layers', layersData)
-    ```
+await seed("layers", layersData);
+```
 
-=== "API Scripts"
+**API Scripts:**
+
 Call PayloadCMS REST API:
 
-    ```typescript
-    const response = await fetch('/api/layers', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(layerData)
-    })
-    ```
+```typescript
+const response = await fetch("/api/layers", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(layerData),
+});
+```
 
-=== "Database Direct"
+**Database Direct:**
+
 Insert directly tới database (development only):
 
-    ```typescript
-    await db.collection('layers').insertMany(layersData)
-    ```
+```typescript
+await db.collection("layers").insertMany(layersData);
+```
 
 ---
 
@@ -386,49 +406,55 @@ entities:
 
 Provide một convenient command để seed everything:
 
-=== "Makefile"
+**Makefile:**
+
 `bash
-    make seed-all
-    `
+make seed-all
+`
 
-    Internally runs:
-    ```makefile
-    seed-all: clean-data seed-broker seed-payload
-    	@echo "All seeds complete!"
-    ```
+Internally runs:
 
-=== "npm Scripts"
+```makefile
+seed-all: clean-data seed-broker seed-payload
+	@echo "All seeds complete!"
+```
+
+**npm Scripts:**
+
 `bash
-    npm run seed
-    `
+npm run seed
+`
 
-    In `package.json`:
-    ```json
-    {
-      "scripts": {
-        "seed": "npm run seed:clean && npm run seed:broker && npm run seed:payload",
-        "seed:clean": "node scripts/clean-data.js",
-        "seed:broker": "node scripts/seed-broker.js",
-        "seed:payload": "node scripts/seed-payload.js"
-      }
-    }
-    ```
+In `package.json`:
 
-=== "Docker Compose"
+```json
+{
+  "scripts": {
+    "seed": "npm run seed:clean && npm run seed:broker && npm run seed:payload",
+    "seed:clean": "node scripts/clean-data.js",
+    "seed:broker": "node scripts/seed-broker.js",
+    "seed:payload": "node scripts/seed-payload.js"
+  }
+}
+```
+
+**Docker Compose:**
+
 `bash
-    docker compose run --rm seed
-    `
+docker compose run --rm seed
+`
 
-    In `docker-compose.yml`:
-    ```yaml
-    services:
-      seed:
-        image: legocity-seed
-        depends_on:
-          - broker
-          - mongodb
-        command: ["sh", "-c", "npm run seed:all"]
-    ```
+In `docker-compose.yml`:
+
+```yaml
+services:
+  seed:
+    image: legocity-seed
+    depends_on:
+      - broker
+      - mongodb
+    command: ["sh", "-c", "npm run seed:all"]
+```
 
 ### Seed Workflow
 
@@ -468,16 +494,20 @@ graph TD
 
 ### Best Practices
 
-=== "Keep It Small"
+**Keep It Small:**
+
 !!! success "Focus on Quality" - Only seed entities needed để demonstrate functionality - Avoid large datasets khó hiểu - 5-10 entities per type thường đủ - Quality examples > Quantity
 
-=== "Version Control"
+**Version Control:**
+
 !!! success "Treat as Code" - Store seeds trong version control - Review changes qua pull requests - Use meaningful commit messages - Tag seeds với version numbers
 
-=== "Documentation"
+**Documentation:**
+
 !!! success "Keep Docs Updated" - Document new entity types - Mention new example views - Update scenario descriptions - Link seeds tới use cases
 
-=== "Versioning"
+**Versioning:**
+
 !!! success "Align with Releases" - Tag seed sets với release versions - Maintain compatibility với docs - Provide migration guides cho seed changes - Archive old seed versions
 
 ### Seed File Structure
@@ -513,154 +543,166 @@ Design seeds around concrete scenarios:
 
 ### Scenario 1: Flooding Risk During Heavy Rainfall
 
-=== "Description"
+**Description:**
+
 **Question:** "How does flooding risk evolve during heavy rainfall?"
 
-    **Data needed:**
-    - Environment: Weather stations với precipitation data
-    - Water: Flood risk zones với varying risk levels
-    - Maps: Overlays showing risk zones và rainfall intensity
+**Data needed:**
 
-=== "Entities"
+- Environment: Weather stations với precipitation data
+- Water: Flood risk zones với varying risk levels
+- Maps: Overlays showing risk zones và rainfall intensity
+
+**Entities:**
+
 ```json
 // WeatherObserved with heavy rain
 {
-"id": "urn:ngsi-ld:WeatherObserved:demo:riverside",
-"type": "WeatherObserved",
-"precipitation": { "value": 50, "unitCode": "MMT" },
-"location": { "coordinates": [105.77, 10.03] }
+  "id": "urn:ngsi-ld:WeatherObserved:demo:riverside",
+  "type": "WeatherObserved",
+  "precipitation": { "value": 50, "unitCode": "MMT" },
+  "location": { "coordinates": [105.77, 10.03] }
 }
 
-    // FloodRiskZone - high risk
-    {
-      "id": "urn:ngsi-ld:FloodRiskZone:demo:riverside-district",
-      "type": "FloodRiskZone",
-      "riskLevel": { "value": "high" },
-      "location": { "type": "Polygon", "coordinates": [...] }
-    }
-    ```
+// FloodRiskZone - high risk
+{
+  "id": "urn:ngsi-ld:FloodRiskZone:demo:riverside-district",
+  "type": "FloodRiskZone",
+  "riskLevel": { "value": "high" },
+  "location": { "type": "Polygon", "coordinates": [...] }
+}
+```
 
-=== "PayloadCMS View"
+**PayloadCMS View:**
+
 `typescript
-    {
-      name: "Flood Monitoring",
-      slug: "flood-monitoring",
-      layers: [
-        "weather-stations",
-        "flood-risk-zones",
-        "rainfall-intensity"
-      ],
-      blocks: [
-        { type: "legend", layers: ["flood-risk-zones"] },
-        { type: "kpiCard", metric: "rainfall:current" }
-      ]
-    }
-    `
+{
+  name: "Flood Monitoring",
+  slug: "flood-monitoring",
+  layers: [
+    "weather-stations",
+    "flood-risk-zones",
+    "rainfall-intensity"
+  ],
+  blocks: [
+    { type: "legend", layers: ["flood-risk-zones"] },
+    { type: "kpiCard", metric: "rainfall:current" }
+  ]
+}
+`
 
 ### Scenario 2: Parking Availability at Peak Hours
 
-=== "Description"
+**Description:**
+
 **Question:** "Which parking areas are near capacity at peak hours?"
 
-    **Data needed:**
-    - Mobility: Parking areas với occupancy data
-    - UI: KPI blocks và visual indicators
-    - Maps: Color-coded parking availability
+**Data needed:**
 
-=== "Entities"
+- Mobility: Parking areas với occupancy data
+- UI: KPI blocks và visual indicators
+- Maps: Color-coded parking availability
+
+**Entities:**
+
 ```json
 // High occupancy parking
 {
-"id": "urn:ngsi-ld:ParkingSpot:demo:downtown-p1",
-"type": "ParkingSpot",
-"availableSpotNumber": { "value": 5 },
-"totalSpotNumber": { "value": 100 },
-"location": { "coordinates": [105.78, 10.035] }
+  "id": "urn:ngsi-ld:ParkingSpot:demo:downtown-p1",
+  "type": "ParkingSpot",
+  "availableSpotNumber": { "value": 5 },
+  "totalSpotNumber": { "value": 100 },
+  "location": { "coordinates": [105.78, 10.035] }
 }
 
-    // Low occupancy parking
-    {
-      "id": "urn:ngsi-ld:ParkingSpot:demo:suburb-p3",
-      "type": "ParkingSpot",
-      "availableSpotNumber": { "value": 85 },
-      "totalSpotNumber": { "value": 100 },
-      "location": { "coordinates": [105.76, 10.025] }
-    }
-    ```
+// Low occupancy parking
+{
+  "id": "urn:ngsi-ld:ParkingSpot:demo:suburb-p3",
+  "type": "ParkingSpot",
+  "availableSpotNumber": { "value": 85 },
+  "totalSpotNumber": { "value": 100 },
+  "location": { "coordinates": [105.76, 10.025] }
+}
+```
 
-=== "PayloadCMS View"
+**PayloadCMS View:**
+
 `typescript
+{
+  name: "Parking Management",
+  slug: "parking-management",
+  layers: ["parking-areas"],
+  blocks: [
     {
-      name: "Parking Management",
-      slug: "parking-management",
-      layers: ["parking-areas"],
-      blocks: [
-        {
-          type: "kpiCard",
-          title: "Available Spots",
-          metric: "parking:total-available"
-        },
-        {
-          type: "chart",
-          title: "Occupancy by Hour",
-          metric: "parking:occupancy-rate"
-        }
-      ]
+      type: "kpiCard",
+      title: "Available Spots",
+      metric: "parking:total-available"
+    },
+    {
+      type: "chart",
+      title: "Occupancy by Hour",
+      metric: "parking:occupancy-rate"
     }
-    `
+  ]
+}
+`
 
 ### Scenario 3: Air Quality Near Major Roads
 
-=== "Description"
+**Description:**
+
 **Question:** "What is the air quality near major roads?"
 
-    **Data needed:**
-    - Environment: Air quality sensors với PM2.5, NO2
-    - Reference: Road network overlay
-    - UI: Color-coded quality indicators
+**Data needed:**
 
-=== "Entities"
+- Environment: Air quality sensors với PM2.5, NO2
+- Reference: Road network overlay
+- UI: Color-coded quality indicators
+
+**Entities:**
+
 ```json
 // Poor air quality near highway
 {
-"id": "urn:ngsi-ld:AirQualityObserved:demo:highway-junction",
-"type": "AirQualityObserved",
-"pm25": { "value": 75, "unitCode": "GQ" },
-"no2": { "value": 120, "unitCode": "GQ" },
-"airQualityLevel": { "value": "unhealthy" },
-"location": { "coordinates": [105.78, 10.04] }
+  "id": "urn:ngsi-ld:AirQualityObserved:demo:highway-junction",
+  "type": "AirQualityObserved",
+  "pm25": { "value": 75, "unitCode": "GQ" },
+  "no2": { "value": 120, "unitCode": "GQ" },
+  "airQualityLevel": { "value": "unhealthy" },
+  "location": { "coordinates": [105.78, 10.04] }
 }
 
-    // Good air quality in park
-    {
-      "id": "urn:ngsi-ld:AirQualityObserved:demo:city-park",
-      "type": "AirQualityObserved",
-      "pm25": { "value": 15, "unitCode": "GQ" },
-      "no2": { "value": 30, "unitCode": "GQ" },
-      "airQualityLevel": { "value": "good" },
-      "location": { "coordinates": [105.76, 10.03] }
-    }
-    ```
+// Good air quality in park
+{
+  "id": "urn:ngsi-ld:AirQualityObserved:demo:city-park",
+  "type": "AirQualityObserved",
+  "pm25": { "value": 15, "unitCode": "GQ" },
+  "no2": { "value": 30, "unitCode": "GQ" },
+  "airQualityLevel": { "value": "good" },
+  "location": { "coordinates": [105.76, 10.03] }
+}
+```
 
-=== "PayloadCMS View"
+**PayloadCMS View:**
+
 `typescript
+{
+  name: "Air Quality Dashboard",
+  slug: "air-quality",
+  layers: [
+    "air-quality-sensors",
+    "road-network"
+  ],
+  blocks: [
+    { type: "legend", layers: ["air-quality-sensors"] },
     {
-      name: "Air Quality Dashboard",
-      slug: "air-quality",
-      layers: [
-        "air-quality-sensors",
-        "road-network"
-      ],
-      blocks: [
-        { type: "legend", layers: ["air-quality-sensors"] },
-        {
-          type: "kpiCard",
-          title: "Average PM2.5",
-          metric: "airquality:pm25-avg"
-        }
-      ]
+      type: "kpiCard",
+      title: "Average PM2.5",
+      metric: "airquality:pm25-avg"
     }
-    `
+  ]
+}
+`
 
 ---
 

@@ -65,7 +65,12 @@ GEOCODING_API_KEY=your-geocoding-api-key
 
 ### Thực hành bảo mật tốt nhất
 
-!!! warning "Never Commit Secrets" - Add `.env` to `.gitignore` - Use different secrets per environment - Rotate keys regularly
+::: warning Never Commit Secrets
+
+- Add `.env` to `.gitignore`
+- Use different secrets per environment
+- Rotate keys regularly
+  :::
 
 **Generate secure secrets**:
 

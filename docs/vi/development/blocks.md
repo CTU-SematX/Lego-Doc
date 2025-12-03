@@ -2,15 +2,16 @@
 
 Trang này giải thích cách tạo các UI blocks mới trong LegoCity.
 
-!!! abstract "Blocks là gì?"
+::: info Blocks là gì?
 Blocks là các đơn vị xây dựng của dashboard UI mô tả:
 
-    - Những gì xuất hiện trong sidebar
-    - Những gì được hiển thị trong detail panels
-    - Cách các layers được toggle
-    - Cách filters và controls được bố trí
+- Những gì xuất hiện trong sidebar
+- Những gì được hiển thị trong detail panels
+- Cách các layers được toggle
+- Cách filters và controls được bố trí
 
 Mục tiêu là cho phép những người không phải developer cấu hình views và blocks trong PayloadCMS, trong khi developers cung cấp các building blocks cơ bản trong code.
+:::
 
 ---
 
@@ -30,7 +31,11 @@ Một block trong LegoCity có hai mặt:
 - Cách nó tương tác với Mapbox và các blocks khác
 - Cách nó đọc runtime data (từ proxy, broker, hoặc context)
 
-!!! tip "Mapping Pattern" - **PayloadCMS:** Block type string (ví dụ `"layerToggle"`, `"kpiCard"`, `"chart"`) - **Dashboard:** React component đã đăng ký cho mỗi block type
+::: tip Mapping Pattern
+
+- **PayloadCMS:** Block type string (ví dụ `"layerToggle"`, `"kpiCard"`, `"chart"`)
+- **Dashboard:** React component đã đăng ký cho mỗi block type
+  :::
 
 ---
 
@@ -79,26 +84,34 @@ layout: array of blocks
 
 ### Tạo Block Type mới
 
-=== "Chọn Block Type"
+**Chọn Block Type:**
+
 Chọn một `blockType` hoặc slug duy nhất:
 
-    - `layerToggle`
-    - `kpiCard`
-    - `mapLegend`
-    - `chartWidget`
+- `layerToggle`
+- `kpiCard`
+- `mapLegend`
+- `chartWidget`
 
-=== "Định nghĩa Fields"
+**Định nghĩa Fields:**
+
 Định nghĩa các trường mà users có thể edit:
 
-    - `title` - Display name
-    - `description` - Help text
-    - `layerRefs` - Links to layer definitions
-    - `thresholds` - Data ranges
-    - Bất kỳ cấu hình nào khác cần cho UI
+- `title` - Display name
+- `description` - Help text
+- `layerRefs` - Links to layer definitions
+- `thresholds` - Data ranges
+- Bất kỳ cấu hình nào khác cần cho UI
 
 ### Nguyên tắc thiết kế Field
 
-!!! success "Best Practices" - ✅ Chỉ expose những gì cần thiết cho behaviour của block - ✅ Tránh hard-coding display strings hoặc IDs trong code - ✅ Ưu tiên references tới các collections khác (layers, views) - ✅ Giữ cấu hình đơn giản và trực quan
+::: tip Best Practices
+
+- ✅ Chỉ expose những gì cần thiết cho behaviour của block
+- ✅ Tránh hard-coding display strings hoặc IDs trong code
+- ✅ Ưu tiên references tới các collections khác (layers, views)
+- ✅ Giữ cấu hình đơn giản và trực quan
+  :::
 
 ---
 
@@ -111,11 +124,15 @@ Dashboard fetch configuration từ:
 
 ### Yêu cầu cấu trúc dữ liệu
 
-!!! warning "Required Fields" - Data phải bao gồm trường `type` hoặc `blockType` cho mỗi block - Các trường còn lại (props) phải theo một shape có thể dự đoán
+::: warning Required Fields
+
+- Data phải bao gồm trường `type` hoặc `blockType` cho mỗi block
+- Các trường còn lại (props) phải theo một shape có thể dự đoán
+  :::
 
 **Ví dụ JSON:**
 
-```json title="Block Configuration"
+```json
 {
   "blocks": [
     {
@@ -145,7 +162,8 @@ Dashboard fetch configuration từ:
 
 Tạo một mapping từ block type tới React component:
 
-```typescript title="dashboard/src/blocks/registry.ts"
+```typescript
+// dashboard/src/blocks/registry.ts
 const BLOCK_REGISTRY: Record<string, React.ComponentType<BlockProps>> = {
   layerToggle: LayerToggleBlock,
   kpiCard: KpiCardBlock,
@@ -164,70 +182,72 @@ Tạo một component:
 
 ### Thêm Block mới
 
-=== "1. Tạo Component"
+**1. Tạo Component:**
+
 **Ví dụ: LayerToggleBlock**
 
-    ```typescript title="dashboard/src/blocks/LayerToggleBlock.tsx"
-    interface LayerToggleProps {
-      title: string;
-      layers: string[];
-      initialState?: boolean;
-    }
+```typescript
+// dashboard/src/blocks/LayerToggleBlock.tsx
+interface LayerToggleProps {
+  title: string;
+  layers: string[];
+  initialState?: boolean;
+}
 
-    export const LayerToggleBlock: React.FC<LayerToggleProps> = ({
-      title,
-      layers,
-      initialState = false
-    }) => {
-      const { showLayer, hideLayer } = useMapController();
-      const [isVisible, setIsVisible] = useState(initialState);
+export const LayerToggleBlock: React.FC<LayerToggleProps> = ({
+  title,
+  layers,
+  initialState = false,
+}) => {
+  const { showLayer, hideLayer } = useMapController();
+  const [isVisible, setIsVisible] = useState(initialState);
 
-      const handleToggle = () => {
-        layers.forEach(layerId => {
-          isVisible ? hideLayer(layerId) : showLayer(layerId);
-        });
-        setIsVisible(!isVisible);
-      };
+  const handleToggle = () => {
+    layers.forEach((layerId) => {
+      isVisible ? hideLayer(layerId) : showLayer(layerId);
+    });
+    setIsVisible(!isVisible);
+  };
 
-      return (
-        <div className="layer-toggle-block">
-          <h3>{title}</h3>
-          <button onClick={handleToggle}>
-            {isVisible ? 'Ẩn' : 'Hiện'} Layers
-          </button>
-        </div>
-      );
-    };
-    ```
+  return (
+    <div className="layer-toggle-block">
+      <h3>{title}</h3>
+      <button onClick={handleToggle}>{isVisible ? "Ẩn" : "Hiện"} Layers</button>
+    </div>
+  );
+};
+```
 
-=== "2. Đăng ký Block"
+**2. Đăng ký Block:**
+
 Thêm vào registry:
 
-    ```typescript
-    const BLOCK_REGISTRY = {
-      // ... existing blocks
-      layerToggle: LayerToggleBlock,
-    };
-    ```
+```typescript
+const BLOCK_REGISTRY = {
+  // ... existing blocks
+  layerToggle: LayerToggleBlock,
+};
+```
 
-    Đảm bảo type string khớp với những gì PayloadCMS gửi.
+Đảm bảo type string khớp với những gì PayloadCMS gửi.
 
-=== "3. Type Safety"
+**3. Type Safety:**
+
 Định nghĩa các specific props types:
 
-    ```typescript
-    interface BlockProps {
-      type: string;
-      [key: string]: any;
-    }
+```typescript
+interface BlockProps {
+  type: string;
+  [key: string]: any;
+}
 
-    interface LayerToggleProps extends BlockProps {
-      type: 'layerToggle';
-      title: string;
-      layers: string[];
-      initialState?: boolean;
-    }
-    ```
+interface LayerToggleProps extends BlockProps {
+  type: "layerToggle";
+  title: string;
+  layers: string[];
+  initialState?: boolean;
+}
+```
 
 ---
 
@@ -244,7 +264,8 @@ Nhiều blocks cần:
 
 Tạo một map context hoặc controller:
 
-```typescript title="Map Controller Interface"
+```typescript
+// Map Controller Interface
 interface MapController {
   showLayer: (id: string) => void;
   hideLayer: (id: string) => void;
@@ -270,9 +291,14 @@ const LayerToggleBlock: React.FC<LayerToggleProps> = ({ layers }) => {
 
 ### Nguyên tắc thiết kế
 
-!!! tip "Giữ Blocks tập trung" - Một block toggles một nhóm layers cụ thể - Block khác visualizes một KPI dựa trên data - Block khác selects một filter hoặc time range
+::: tip Giữ Blocks tập trung
 
-    Tránh coupling blocks trực tiếp với raw Mapbox internals—route interactions qua shared map controller.
+- Một block toggles một nhóm layers cụ thể
+- Block khác visualizes một KPI dựa trên data
+- Block khác selects một filter hoặc time range
+
+Tránh coupling blocks trực tiếp với raw Mapbox internals—route interactions qua shared map controller.
+:::
 
 ---
 
@@ -296,7 +322,8 @@ Chỉ định:
 
 ### React Component Implementation
 
-```typescript title="KPI Card Example"
+```typescript
+// KPI Card Example
 const KpiCardBlock: React.FC<KpiCardProps> = ({ title, metricKey }) => {
   const [value, loading, error] = useMetric(metricKey);
 
@@ -314,7 +341,13 @@ const KpiCardBlock: React.FC<KpiCardProps> = ({ title, metricKey }) => {
 
 ### Cân nhắc thiết kế API
 
-!!! success "Giữ UI đơn giản" - Trả về aggregated results khi có thể - Tránh buộc UI implement heavy transformation logic - Cung cấp loading và error states - Cache dữ liệu được truy cập thường xuyên
+::: tip Giữ UI đơn giản
+
+- Trả về aggregated results khi có thể
+- Tránh buộc UI implement heavy transformation logic
+- Cung cấp loading và error states
+- Cache dữ liệu được truy cập thường xuyên
+  :::
 
 ---
 
@@ -383,86 +416,89 @@ Document:
 
 ### Cung cấp Examples
 
-=== "Screenshots"
+**Screenshots:**
+
 Bao gồm screenshots của block đang sử dụng
 
-=== "Configuration"
-`json
-    {
-      "type": "layerToggle",
-      "title": "Flood Risk Layers",
-      "layers": [
-        "env:flood-risk-high",
-        "env:flood-risk-medium"
-      ],
-      "initialState": true
-    }
-    `
+**Configuration:**
 
-=== "Component Usage"
-`typescript
-    <LayerToggleBlock
-      title="Flood Risk Layers"
-      layers={["env:flood-risk-high", "env:flood-risk-medium"]}
-      initialState={true}
-    />
-    `
+```json
+{
+  "type": "layerToggle",
+  "title": "Flood Risk Layers",
+  "layers": ["env:flood-risk-high", "env:flood-risk-medium"],
+  "initialState": true
+}
+```
+
+**Component Usage:**
+
+```typescript
+<LayerToggleBlock
+  title="Flood Risk Layers"
+  layers={["env:flood-risk-high", "env:flood-risk-medium"]}
+  initialState={true}
+/>
+```
 
 ---
 
 ## Block Development Checklist
 
-!!! example "Tạo Block mới"
+::: tip Tạo Block mới
 **PayloadCMS:**
 
-    - [ ] Định nghĩa block type và unique slug
-    - [ ] Thêm configurable fields
-    - [ ] Test block creation trong admin panel
-    - [ ] Document field purposes
+- [ ] Định nghĩa block type và unique slug
+- [ ] Thêm configurable fields
+- [ ] Test block creation trong admin panel
+- [ ] Document field purposes
 
-    **Dashboard:**
+**Dashboard:**
 
-    - [ ] Tạo React component
-    - [ ] Thêm vào block registry
-    - [ ] Implement prop types (TypeScript)
-    - [ ] Handle loading/error states
-    - [ ] Connect to map controller (nếu cần)
-    - [ ] Connect to data API (nếu cần)
+- [ ] Tạo React component
+- [ ] Thêm vào block registry
+- [ ] Implement prop types (TypeScript)
+- [ ] Handle loading/error states
+- [ ] Connect to map controller (nếu cần)
+- [ ] Connect to data API (nếu cần)
 
-    **Testing:**
+**Testing:**
 
-    - [ ] Tạo test view trong PayloadCMS
-    - [ ] Verify block renders correctly
-    - [ ] Test interactive features
-    - [ ] Check mobile responsiveness
+- [ ] Tạo test view trong PayloadCMS
+- [ ] Verify block renders correctly
+- [ ] Test interactive features
+- [ ] Check mobile responsiveness
 
-    **Documentation:**
+**Documentation:**
 
-    - [ ] Update block reference
-    - [ ] Thêm usage examples
-    - [ ] Bao gồm screenshots
-    - [ ] Document known limitations
+- [ ] Update block reference
+- [ ] Thêm usage examples
+- [ ] Bao gồm screenshots
+- [ ] Document known limitations
+      :::
 
 ---
 
 ## Tóm tắt
 
-!!! success "Key Takeaways"
+::: tip Key Takeaways
 **Blocks kết nối PayloadCMS configuration với React components**
 
-    **Để tạo một block mới:**
+**Để tạo một block mới:**
 
-    1. Định nghĩa block type và fields trong PayloadCMS
-    2. Đảm bảo API exposes block data với `type` và `props`
-    3. Implement React component và đăng ký trong block registry
-    4. Wire to map controller hoặc data APIs nếu cần
-    5. Test trong real views và document usage
+1. Định nghĩa block type và fields trong PayloadCMS
+2. Đảm bảo API exposes block data với `type` và `props`
+3. Implement React component và đăng ký trong block registry
+4. Wire to map controller hoặc data APIs nếu cần
+5. Test trong real views và document usage
 
-    **Best practices:**
+**Best practices:**
 
-    - Giữ blocks nhỏ, focused, và data-driven
-    - Enable non-developers compose complex dashboards từ simple pieces
-    - Luôn update documentation cho các contributors khác
+- Giữ blocks nhỏ, focused, và data-driven
+- Tránh hard-coding IDs và strings trong components
+- Provide sensible defaults và graceful error handling
+- Document mỗi block type với examples và use cases
+  ::: - Enable non-developers compose complex dashboards từ simple pieces - Luôn update documentation cho các contributors khác
 
 **Các trang liên quan:**
 

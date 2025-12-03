@@ -41,48 +41,91 @@ Logic nền tảng **không phụ thuộc** vào tính năng AI:
 
 ### Use Case 1: Mô tả lớp
 
-=== "Quy trình làm việc" 1. Biên tập viên tạo lớp bản đồ mới cho entity type "WeatherObserved" 2. Nhấp **"Generate Description with AI"** 3. AI đề xuất: > "Lớp này hiển thị dữ liệu quan sát thời tiết theo thời gian thực, > bao gồm nhiệt độ, độ ẩm và áp suất khí quyển." 4. Biên tập viên **xem xét**, **chỉnh sửa nếu cần** và **chấp nhận**
+**Quy trình làm việc:**
 
-=== "Lợi ích" - Tiết kiệm thời gian viết mô tả cho các entity types phổ biến - Đảm bảo tính nhất quán giữa các lớp - Đề xuất thuật ngữ người dùng có thể dễ tiếp cận
+1. Biên tập viên tạo lớp bản đồ mới cho entity type "WeatherObserved"
+2. Nhấp **"Generate Description with AI"**
+3. AI đề xuất:
+   > "Lớp này hiển thị dữ liệu quan sát thời tiết theo thời gian thực,
+   > bao gồm nhiệt độ, độ ẩm và áp suất khí quyển."
+4. Biên tập viên **xem xét**, **chỉnh sửa nếu cần** và **chấp nhận**
+
+**Lợi ích:**
+
+- Tiết kiệm thời gian viết mô tả cho các entity types phổ biến
+- Đảm bảo tính nhất quán giữa các lớp
+- Đề xuất thuật ngữ người dùng có thể dễ tiếp cận
 
 ### Use Case 2: Tóm tắt View
 
-=== "Quy trình làm việc" 1. Biên tập viên tạo view "Flood Monitoring" với: - Lớp thời tiết (lượng mưa) - Vùng nguy cơ lũ lụt - Cảm biến mức nước
+**Quy trình làm việc:**
 
-    2. AI đề xuất văn bản giới thiệu:
-       > **Bảng điều khiển giám sát lũ lụt**
-       >
-       > Giám sát nguy cơ lũ lụt theo thời gian thực trên toàn thành phố:
-       > - Theo dõi cường độ mưa và lượng mưa tích lũy
-       > - Xem các vùng nguy cơ lũ lụt cao
-       > - Giám sát mức nước sông tại các điểm chính
+1. Biên tập viên tạo view "Flood Monitoring" với:
 
-=== "Lợi ích" - Các bản nháp nhanh cho views mới - Định dạng nội dung có cấu trúc - Các câu hỏi ví dụ cho tooltips trợ giúp
+   - Lớp thời tiết (lượng mưa)
+   - Vùng nguy cơ lũ lụt
+   - Cảm biến mức nước
+
+2. AI đề xuất văn bản giới thiệu:
+   > **Bảng điều khiển giám sát lũ lụt**
+   >
+   > Giám sát nguy cơ lũ lụt theo thời gian thực trên toàn thành phố:
+   >
+   > - Theo dõi cường độ mưa và lượng mưa tích lũy
+   > - Xem các vùng nguy cơ lũ lụt cao
+   > - Giám sát mức nước sông tại các điểm chính
+
+**Lợi ích:**
+
+- Các bản nháp nhanh cho views mới
+- Định dạng nội dung có cấu trúc
+- Các câu hỏi ví dụ cho tooltips trợ giúp
 
 ### Use Case 3: Nhãn khối
 
-=== "Quy trình làm việc" 1. Khối `LayerToggle` được cấu hình với các lớp: - `flood-risk-high` - `flood-risk-medium` - `flood-risk-low`
+**Quy trình làm việc:**
 
-    2. AI đề xuất nhãn ngắn gọn:
-       > "Vùng nguy cơ lũ lụt"
+1. Khối `LayerToggle` được cấu hình với các lớp:
 
-=== "Lợi ích" - Quy ước đặt tên nhất quán - Thuật ngữ thân thiện với người dùng - Tiết kiệm các tác vụ đặt tên lặp đi lặp lại
+   - `flood-risk-high`
+   - `flood-risk-medium`
+   - `flood-risk-low`
+
+2. AI đề xuất nhãn ngắn gọn:
+   > "Vùng nguy cơ lũ lụt"
+
+**Lợi ích:**
+
+- Quy ước đặt tên nhất quán
+- Thuật ngữ thân thiện với người dùng
+- Tiết kiệm các tác vụ đặt tên lặp đi lặp lại
 
 ### Use Case 4: Câu hỏi ví dụ
 
-=== "Quy trình làm việc" 1. AI phân tích cấu hình view 2. Đề xuất các câu hỏi mẫu người dùng có thể hỏi: - "Khu vực nào có nguy cơ lũ lụt cao nhất?" - "Cường độ mưa hiện tại là bao nhiêu?" - "Khu vực nào nên được sơ tán?"
+**Quy trình làm việc:**
 
-=== "Lợi ích" - Giúp với tài liệu trợ giúp - Cải thiện hướng dẫn người dùng - Xác định các trường hợp sử dụng phổ biến
+1. AI phân tích cấu hình view
+2. Đề xuất các câu hỏi mẫu người dùng có thể hỏi:
+   - "Khu vực nào có nguy cơ lũ lụt cao nhất?"
+   - "Cường độ mưa hiện tại là bao nhiêu?"
+   - "Khu vực nào nên được sơ tán?"
+
+**Lợi ích:**
+
+- Giúp với tài liệu trợ giúp
+- Cải thiện hướng dẫn người dùng
+- Xác định các trường hợp sử dụng phổ biến
 
 ### Nguyên tắc kiểm soát biên tập viên
 
-!!! success "Con người trong vòng lặp"
+::: success Con người trong vòng lặp
 Trong mọi trường hợp:
 
-    - ✅ Đầu ra AI **có thể chỉnh sửa** và **có thể đảo ngược**
-    - ✅ Biên tập viên giữ **toàn quyền kiểm soát**
-    - ✅ AI cung cấp **đề xuất**, không phải quyết định cuối cùng
-    - ✅ Nội dung trước đó được bảo tồn
+- ✅ Đầu ra AI **có thể chỉnh sửa** và **có thể đảo ngược**
+- ✅ Biên tập viên giữ **toàn quyền kiểm soát**
+- ✅ AI cung cấp **đề xuất**, không phải quyết định cuối cùng
+- ✅ Nội dung trước đó được bảo tồn
+  :::
 
 ---
 
@@ -96,30 +139,9 @@ Trong mọi trường hợp:
 
 === "Cấu hình ví dụ"
 
-    ```typescript title="payload.config.ts"
-    import { payloadAI } from '@payloadcms/plugin-ai'
-
-    export default buildConfig({
-      plugins: [
-        payloadAI({
-          provider: 'openai',
-          apiKey: process.env.OPENAI_API_KEY,
-          enabled: process.env.ENABLE_AI === 'true',
-          collections: {
-            layers: {
-              fields: ['description', 'tooltip']
-            },
-            views: {
-              fields: ['summary', 'introduction']
-            }
-          }
-        })
-      ]
-    })
-    ```
-
 === "Biến môi trường"
-```bash title=".env" # Cấu hình nhà cung cấp AI
+
+````bash title=".env" # Cấu hình nhà cung cấp AI
 ENABLE_AI=true
 AI_PROVIDER=openai
 OPENAI_API_KEY=sk-...
@@ -132,7 +154,12 @@ OPENAI_API_KEY=sk-...
 
 ### Nguyên tắc cấu hình
 
-!!! warning "Thực hành tốt nhất về bảo mật" - 🔐 Lưu trữ khóa nhà cung cấp AI như **secrets** (env vars hoặc secret manager) - 🌍 Cho phép **nhà cung cấp hoặc khóa khác nhau cho mỗi môi trường** - 🔌 Cho phép AI **được tắt hoàn toàn** - 🚫 Không bao giờ commit khóa API vào version control
+::: warning Thực hành tốt nhất về bảo mật
+- 🔐 Lưu trữ khóa nhà cung cấp AI như **secrets** (env vars hoặc secret manager)
+- 🌍 Cho phép **nhà cung cấp hoặc khóa khác nhau cho mỗi môi trường**
+- 🔌 Cho phép AI **được tắt hoàn toàn**
+- 🚫 Không bao giờ commit khóa API vào version control
+:::
 
 ### Ma trận môi trường
 
@@ -145,12 +172,13 @@ OPENAI_API_KEY=sk-...
 
 ### Độc lập nền tảng
 
-!!! success "Không phụ thuộc"
+::: success Không phụ thuộc
 Logic nền tảng **không được phụ thuộc** vào các tính năng AI:
 
-    - Chức năng cốt lõi hoạt động mà không cần AI
-    - Seeds, migrations và workflows độc lập với AI
-    - Các tính năng AI là các cải tiến bổ sung thuần túy
+- Chức năng cốt lõi hoạt động mà không cần AI
+- Seeds, migrations và workflows độc lập với AI
+- Các tính năng AI là các cải tiến bổ sung thuần túy
+:::
 
 ---
 
@@ -160,7 +188,12 @@ Khi thêm AI helpers vào admin UI:
 
 ### 1. Hành động AI rõ ràng
 
-!!! tip "Yêu cầu Ý định của người dùng" - Thêm các button rõ ràng: "Tạo mô tả", "Đề xuất nhãn" - **Không bao giờ** tự động chạy AI mà không có hành động của người dùng - Cung cấp keyboard shortcuts cho người dùng chuyên nghiệp - Hiển thị trạng thái đang tải trong các thao tác AI
+::: tip Yêu cầu Ý định của người dùng
+- Thêm các button rõ ràng: "Tạo mô tả", "Đề xuất nhãn"
+- **Không bao giờ** tự động chạy AI mà không có hành động của người dùng
+- Cung cấp keyboard shortcuts cho người dùng chuyên nghiệp
+- Hiển thị trạng thái đang tải trong các thao tác AI
+:::
 
 **Ví dụ:**
 
@@ -172,11 +205,17 @@ Khi thêm AI helpers vào admin UI:
 >
   ✨ Tạo mô tả bằng AI
 </Button>
-```
+````
 
 ### 2. Hiển thị đề xuất rõ ràng
 
-!!! tip "Đầu ra AI minh bạch" - Hiển thị AI output dưới dạng **nội dung gợi ý**, không phải sự thật cuối cùng - Cho phép biên tập viên **accept**, **edit** hoặc **discard** - Bảo toàn original content nếu được thay thế - Hiển thị comparison view khi hữu ích
+::: tip Đầu ra AI minh bạch
+
+- Hiển thị AI output dưới dạng **nội dung gợi ý**, không phải sự thật cuối cùng
+- Cho phép biên tập viên **accept**, **edit** hoặc **discard**
+- Bảo toàn original content nếu được thay thế
+- Hiển thị comparison view khi hữu ích
+  :::
 
 **Giao diện ví dụ:**
 
@@ -194,17 +233,24 @@ Nội dung gốc: "Lớp thời tiết"
 
 ### 3. Các hành động tập trung
 
-!!! tip "Nhiệm vụ nhỏ, mục đích đơn" - Giữ các actions **nhỏ và tập trung** (một field hoặc section) - Tránh các chuỗi AI phức tạp, nhiều bước - Cho phép chấp nhận từng phần các đề xuất - Cho phép hoàn tác/làm lại
+::: tip Nhiệm vụ nhỏ, mục đích đơn
+
+- Giữ các actions **nhỏ và tập trung** (một field hoặc section)
+- Tránh các chuỗi AI phức tạp, nhiều bước
+- Cho phép chấp nhận từng phần các đề xuất
+- Cho phép hoàn tác/làm lại
+  :::
 
 ### 4. Xử lý lỗi khéo léo
 
-!!! warning "Xử lý lỗi tốt"
+::: warning Xử lý lỗi tốt
 Timeouts, vấn đề nhà cung cấp hoặc cấu hình không hợp lệ nên:
 
-    - Hiển thị **thông báo lỗi rõ ràng**
-    - Đề xuất **cách khắc phục thực tế**
-    - **Không bao giờ phá vỡ** toàn bộ admin UI
-    - Quay lại chỉnh sửa thủ công
+- Hiển thị **thông báo lỗi rõ ràng**
+- Đề xuất **cách khắc phục thực tế**
+- **Không bao giờ phá vỡ** toàn bộ admin UI
+- Quay lại chỉnh sửa thủ công
+  :::
 
 **Ví dụ thông báo lỗi:**
 
@@ -225,30 +271,36 @@ Nhà cung cấp AI hiện không khả dụng. Bạn có thể:
 
 ### Quyền riêng tư dữ liệu
 
-!!! danger "Bảo vệ dữ liệu nhạy cảm"
+::: danger Bảo vệ dữ liệu nhạy cảm
 **Tránh gửi tới các nhà cung cấp AI bên ngoài:**
 
-    - Thông tin nhận dạng cá nhân (PII)
-    - Thông tin xác thực
-    - Chi tiết hệ thống nội bộ
-    - Toàn bộ cấu hình
-    - Nhật ký ứng dụng
+- Thông tin nhận dạng cá nhân (PII)
+- Thông tin xác thực
+- Chi tiết hệ thống nội bộ
+- Toàn bộ cấu hình
+- Nhật ký ứng dụng
 
 **Những gì nên gửi:**
 
 - ✅ Nhãn và mô tả trường
 - ✅ Nội dung công khai
 - ✅ Tên loại thực thể chung
-- ✅ Siêu dữ liệu không nhạy cảm### Xác thực nội dung
+- ✅ Siêu dữ liệu không nhạy cảm
+  :::
 
-!!! warning "Xem xét đầu ra AI"
+### Xác thực nội dung
+
+::: warning Xem xét đầu ra AI
 **Xử lý đầu ra AI như không đáng tin cậy cho đến khi có sự chấp thuận của con người:**
 
-    - Xem xét để kiểm tra độ chính xác kỹ thuật
-    - Kiểm tra các sự thật bịa đặt
-    - Xác minh ánh xạ thực thể
-    - Xác thực với kiến thức chuyên môn
-    - Đảm bảo tính nhất quán về thương hiệu/giọng điệu### Giới hạn ngữ cảnh
+- Xem xét để kiểm tra độ chính xác kỹ thuật
+- Kiểm tra các sự thật bịa đặt
+- Xác minh ánh xạ thực thể
+- Xác thực với kiến thức chuyên môn
+- Đảm bảo tính nhất quán về thương hiệu/giọng điệu
+  :::
+
+### Giới hạn ngữ cảnh
 
 **Chỉ gửi ngữ cảnh cần thiết:**
 
@@ -271,23 +323,44 @@ Nhà cung cấp AI hiện không khả dụng. Bạn có thể:
 
 ### Yêu cầu minh bạch
 
-!!! info "Giao tiếp rõ ràng"
+::: info Giao tiếp rõ ràng
 Tài liệu và giao diện nên làm rõ:
 
-    - Đầu ra AI có thể **không chính xác hoặc không đầy đủ**
-    - Biên tập viên **chịu trách nhiệm** cho nội dung cuối cùng
-    - AI là một **công cụ**, không phải thay thế cho chuyên môn
-    - Xem xét của con người **luôn được yêu cầu**---
+- Đầu ra AI có thể **không chính xác hoặc không đầy đủ**
+- Biên tập viên **chịu trách nhiệm** cho nội dung cuối cùng
+- AI là một **công cụ**, không phải thay thế cho chuyên môn
+- Xem xét của con người **luôn được yêu cầu**
+  :::
+
+---
 
 ## Hướng dẫn phát triển và đóng góp
 
 ### 1. Kiến trúc tách biệt
 
-!!! success "Tách biệt mối quan tâm" - Giữ các tính năng AI **độc lập** khỏi chức năng cốt lõi - Plugin AI nên **có thể sử dụng độc lập** - Không ràng buộc các luồng cốt lõi với hoàn thiện AI: - Seed data generation - Database migrations - Authentication/authorization - API responses
+::: success Tách biệt mối quan tâm
+
+- Giữ các tính năng AI **độc lập** khỏi chức năng cốt lõi
+- Plugin AI nên **có thể sử dụng độc lập**
+- Không ràng buộc các luồng cốt lõi với hoàn thiện AI:
+  - Seed data generation
+  - Database migrations
+  - Authentication/authorization
+  - API responses
+    :::
 
 ### 2. Lời nhắc minh bạch
 
-!!! success "Tài liệu hóa hành vi AI" - Lưu prompts ở **nơi được tài liệu rõ ràng** - Làm chúng **ngắn gọn và cụ thể theo lĩnh vực**: - Smart city concepts - NGSI-LD terminology - LegoCity architecture - Kiểm soát phiên bản các thay đổi lời nhắc - Xem xét cập nhật lời nhắc trong PR
+::: success Tài liệu hóa hành vi AI
+
+- Lưu prompts ở **nơi được tài liệu rõ ràng**
+- Làm chúng **ngắn gọn và cụ thể theo lĩnh vực**:
+  - Smart city concepts
+  - NGSI-LD terminology
+  - LegoCity architecture
+- Kiểm soát phiên bản các thay đổi lời nhắc
+- Xem xét cập nhật lời nhắc trong PR
+  :::
 
 **Lưu trữ lời nhắc ví dụ:**
 
@@ -312,7 +385,15 @@ Yêu cầu:
 
 ### 3. Sử dụng có thể cấu hình
 
-!!! success "Kiểm soát linh hoạt" - Cho phép admins **bật/tắt AI theo từng bộ sưu tập** - Cho phép admins **bật/tắt AI theo từng trường** - Hỗ trợ **hạn chế dựa trên vai trò**: - Chỉ biên tập viên có thể sử dụng AI features - Người xem không thể kích hoạt hành động AI - Cung cấp công tắc AI toàn cục
+::: success Kiểm soát linh hoạt
+
+- Cho phép admins **bật/tắt AI theo từng bộ sưu tập**
+- Cho phép admins **bật/tắt AI theo từng trường**
+- Hỗ trợ **hạn chế dựa trên vai trò**:
+  - Chỉ biên tập viên có thể sử dụng AI features
+  - Người xem không thể kích hoạt hành động AI
+- Cung cấp công tắc AI toàn cục
+  :::
 
 **Example Cấu hình:**
 
@@ -335,7 +416,16 @@ payloadAI({
 
 ### 4. Ghi nhật ký có ý thức về quyền riêng tư
 
-!!! success "Ghi nhật ký tối thiểu" - Log AI interactions **chỉ cho debugging** - Tránh lưu **full prompts và responses** - Không bao giờ log **nội dung nhạy cảm** - Sử dụng mức nhật ký phù hợp: - INFO: Hành động AI được kích hoạt - DEBUG: Siêu dữ liệu yêu cầu/phản hồi - ERROR: Failures và timeouts
+::: success Ghi nhật ký tối thiểu
+
+- Log AI interactions **chỉ cho debugging**
+- Tránh lưu **full prompts và responses**
+- Không bao giờ log **nội dung nhạy cảm**
+- Sử dụng mức nhật ký phù hợp:
+  - INFO: Hành động AI được kích hoạt
+  - DEBUG: Siêu dữ liệu yêu cầu/phản hồi
+  - ERROR: Failures và timeouts
+    :::
 
 **Example Log Structure:**
 

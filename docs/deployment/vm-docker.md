@@ -52,6 +52,7 @@ A typical single-VM setup will have:
 On a single VM, the logical architecture is:
 
 - external network:
+
   - users access:
     - dashboard URL,
     - API (proxy) URL,
@@ -148,6 +149,8 @@ Example `.env` (illustrative, not exhaustive):
 
     # Update servers (example)
     UPDATE_ENV_IMAGE=legocity-update-env:latest
+
+**Security note**: Never commit `.env` to version control. Add it to `.gitignore`.
 
     # Broker auth (example)
     BROKER_WRITE_KEY_ENV=change-me-env
@@ -266,6 +269,7 @@ Conceptually:
 Notes:
 
 - the example assumes:
+
   - a simple broker on port 1026,
   - PayloadCMS listening on port 3000 internally,
   - a proxy on port 4000,
@@ -304,72 +308,72 @@ In Docker-based setups, the reverse proxy itself is often another container on t
 
 A typical initial deployment workflow:
 
-1. Prepare the VM
+1.  Prepare the VM
 
-   - provision a VM (for example Ubuntu LTS),
-   - install security updates,
-   - install Docker and Docker Compose,
-   - configure firewall rules to allow HTTP/HTTPS and SSH only.
+    - provision a VM (for example Ubuntu LTS),
+    - install security updates,
+    - install Docker and Docker Compose,
+    - configure firewall rules to allow HTTP/HTTPS and SSH only.
 
-2. Create the LegoCity directory
+2.  Create the LegoCity directory
 
-   - create a directory, e.g. `/opt/legocity`,
-   - place `docker-compose.yml` and `.env` there,
-   - create subdirectories for persistent data:
-     
-         mkdir -p /opt/legocity/data/broker
-         mkdir -p /opt/legocity/data/db
+    - create a directory, e.g. `/opt/legocity`,
+    - place `docker-compose.yml` and `.env` there,
+    - create subdirectories for persistent data:
 
-3. Configure environment variables
+          mkdir -p /opt/legocity/data/broker
+          mkdir -p /opt/legocity/data/db
 
-   - edit `.env`:
-     - set database credentials,
-     - set broker image and ports,
-     - set PayloadCMS DB URL,
-     - set write keys and any external API keys,
-     - set hostnames if needed by the application.
+3.  Configure environment variables
 
-4. Pull images
+    - edit `.env`:
+      - set database credentials,
+      - set broker image and ports,
+      - set PayloadCMS DB URL,
+      - set write keys and any external API keys,
+      - set hostnames if needed by the application.
 
-   - run:
-     
-         docker compose pull
+4.  Pull images
 
-   - this will download images referenced by `docker-compose.yml`.
+    - run:
 
-5. Start services
+          docker compose pull
 
-   - run:
-     
-         docker compose up -d
+    - this will download images referenced by `docker-compose.yml`.
 
-   - wait for containers to start. Check status:
-     
-         docker compose ps
+5.  Start services
 
-6. Verify components
+    - run:
 
-   - broker:
-     - check container logs,
-     - optionally call a health endpoint (if available) from the VM.
-   - database:
-     - check that the DB container is running.
-   - PayloadCMS:
-     - access the configured port (or reverse proxy route) from a browser,
-     - complete any initial setup (admin user).
-   - proxy:
-     - call a simple API endpoint to confirm it can reach the broker.
-   - dashboard:
-     - open the dashboard URL and confirm that it loads,
-     - accept that map and data may be empty until update servers are running.
-   - update servers:
-     - check logs to ensure they are fetching external data and writing entities.
+          docker compose up -d
 
-7. Set up the reverse proxy (if not already)
+    - wait for containers to start. Check status:
 
-   - configure hostnames and routes,
-   - obtain TLS certificates,
-   - ensure that only the reverse proxy ports are exposed externally.
+          docker compose ps
+
+6.  Verify components
+
+    - broker:
+      - check container logs,
+      - optionally call a health endpoint (if available) from the VM.
+    - database:
+      - check that the DB container is running.
+    - PayloadCMS:
+      - access the configured port (or reverse proxy route) from a browser,
+      - complete any initial setup (admin user).
+    - proxy:
+      - call a simple API endpoint to confirm it can reach the broker.
+    - dashboard:
+      - open the dashboard URL and confirm that it loads,
+      - accept that map and data may be empty until update servers are running.
+    - update servers:
+      - check logs to ensure they are fetching external data and writing entities.
+
+7.  Set up the reverse proxy (if not already)
+
+    - configure hostnames and routes,
+    - obtain TLS certificates,
+    - ensure that only the reverse proxy ports are exposed externally.
 
 ---
 
@@ -392,10 +396,12 @@ For a running deployment:
 Typical troubleshooting steps:
 
 - if the dashboard shows empty maps:
+
   - check that update servers are running and writing entities,
   - check that the proxy can query the broker.
 
 - if PayloadCMS is unreachable:
+
   - confirm the container is running,
   - check reverse proxy configuration and port mappings.
 
@@ -409,17 +415,18 @@ Typical troubleshooting steps:
 
 To deploy a new version of any component (for example, dashboard or proxy):
 
-1. Build and publish new container images  
+1. Build and publish new container images
+
    - update the image tag in `.env` or `docker-compose.yml`,
    - or ensure `latest` points to the new version.
 
 2. Pull new images on the VM
 
-       docker compose pull
+   docker compose pull
 
 3. Restart services
 
-       docker compose up -d
+   docker compose up -d
 
 4. Verify behaviour
 
@@ -445,6 +452,7 @@ At minimum, you should back up:
 Typical backup strategies:
 
 - for the database:
+
   - use database-level tools (e.g. `pg_dump` for PostgreSQL),
   - schedule backups via cron jobs or external tools,
   - store backups on separate storage or remote locations.
@@ -465,6 +473,7 @@ Backups should be:
 A single VM is sufficient for small deployments. As needs grow, you can:
 
 - move certain services to separate VMs:
+
   - run the database on a dedicated host,
   - run broker and update servers on another,
   - keep PayloadCMS and dashboard on a third.

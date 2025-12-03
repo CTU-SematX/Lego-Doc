@@ -18,58 +18,60 @@ This guide is for developers who want to:
 
 Install these before proceeding:
 
-=== "Node.js & pnpm"
+**Node.js & pnpm:**
 
-    ```bash
-    # Check Node.js version (need 18.x or 20.x)
-    node --version
+```bash
+# Check Node.js version (need 18.x or 20.x)
+node --version
 
-    # Install pnpm globally
-    npm install -g pnpm
+# Install pnpm globally
+npm install -g pnpm
 
-    # Verify pnpm
-    pnpm --version
-    ```
+# Verify pnpm
+pnpm --version
+```
 
-=== "Git"
+**Git:**
 
-    ```bash
-    # Check Git installation
-    git --version
+```bash
+# Check Git installation
+git --version
 
-    # Configure Git
-    git config --global user.name "Your Name"
-    git config --global user.email "your.email@example.com"
-    ```
+# Configure Git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
 
-=== "MongoDB"
+**MongoDB:**
 
-    **Option 1: Local Installation**
-    ```bash
-    # Windows (via Chocolatey)
-    choco install mongodb
+**Option 1: Local Installation**
 
-    # macOS (via Homebrew)
-    brew install mongodb-community
+```bash
+# Windows (via Chocolatey)
+choco install mongodb
 
-    # Linux (Ubuntu/Debian)
-    sudo apt install mongodb
-    ```
+# macOS (via Homebrew)
+brew install mongodb-community
 
-    **Option 2: Docker**
-    ```bash
-    docker run -d -p 27017:27017 --name mongodb mongo:6
-    ```
+# Linux (Ubuntu/Debian)
+sudo apt install mongodb
+```
 
-=== "VS Code (Recommended)"
+**Option 2: Docker**
 
-    Install Visual Studio Code with extensions:
+```bash
+docker run -d -p 27017:27017 --name mongodb mongo:6
+```
 
-    - ESLint
-    - Prettier
-    - TypeScript and JavaScript Language Features
-    - Tailwind CSS IntelliSense
-    - MongoDB for VS Code
+**VS Code (Recommended):**
+
+Install Visual Studio Code with extensions:
+
+- ESLint
+- Prettier
+- TypeScript and JavaScript Language Features
+- Tailwind CSS IntelliSense
+- MongoDB for VS Code
 
 ### Optional Tools
 

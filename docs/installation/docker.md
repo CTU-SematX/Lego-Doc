@@ -20,44 +20,44 @@ Run LegoCity in containers with Docker Compose - the fastest way to get started.
 
 ### Install Docker
 
-=== "Windows"
+**Windows:**
 
-    Download and install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
+Download and install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
 
-    ```powershell
-    # Verify installation
-    docker --version
-    docker compose version
-    ```
+```powershell
+# Verify installation
+docker --version
+docker compose version
+```
 
-=== "macOS"
+**macOS:**
 
-    Download and install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
+Download and install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
 
-    ```bash
-    # Verify installation
-    docker --version
-    docker compose version
-    ```
+```bash
+# Verify installation
+docker --version
+docker compose version
+```
 
-=== "Linux"
+**Linux:**
 
-    ```bash
-    # Install Docker Engine
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
+```bash
+# Install Docker Engine
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-    # Install Docker Compose
-    sudo apt install docker-compose-plugin
+# Install Docker Compose
+sudo apt install docker-compose-plugin
 
-    # Add user to docker group
-    sudo usermod -aG docker $USER
-    newgrp docker
+# Add user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
 
-    # Verify
-    docker --version
-    docker compose version
-    ```
+# Verify
+docker --version
+docker compose version
+```
 
 ### System Requirements
 

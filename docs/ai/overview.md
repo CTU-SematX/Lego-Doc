@@ -2,12 +2,13 @@
 
 This page describes how LegoCity can use AI helpers in PayloadCMS, primarily via the Payload AI plugin, and what role they play in the overall system.
 
-!!! info "AI Features are Optional"
+::: info AI Features are Optional
 AI features are considered **optional and supportive**:
 
-    - ✅ The platform must work without any AI provider configured
-    - ✅ AI is used to **assist** content editors and developers
-    - ❌ AI does **not replace** human decision-making
+- ✅ The platform must work without any AI provider configured
+- ✅ AI is used to **assist** content editors and developers
+- ❌ AI does **not replace** human decision-making
+  :::
 
 ---
 
@@ -17,42 +18,40 @@ AI features are considered **optional and supportive**:
 
 AI helpers are useful for content-related tasks:
 
-=== "Content Generation"
-**Drafting Descriptions**
+**Content Generation - Drafting Descriptions:**
 
-    - Human-friendly explanations for layers, views, blocks
-    - Summaries and tooltips
-    - Documentation snippets
-    - Quick drafts of "what this view does"
+- Human-friendly explanations for layers, views, blocks
+- Summaries and tooltips
+- Documentation snippets
+- Quick drafts of "what this view does"
 
-=== "Naming & Labeling"
-**Suggesting Names**
+**Naming & Labeling - Suggesting Names:**
 
-    - Layer names
-    - Legend entries
-    - KPI titles
-    - Block labels
-    - View headings
+- Layer names
+- Legend entries
+- KPI titles
+- Block labels
+- View headings
 
-=== "Low-Risk Transformations"
-**Content Enhancement**
+**Low-Risk Transformations - Content Enhancement:**
 
-    - Rephrasing text for clarity
-    - Generating alt text
-    - Accessibility hints
-    - Multi-language translations
-    - Short explanations for non-technical users
+- Rephrasing text for clarity
+- Generating alt text
+- Accessibility hints
+- Multi-language translations
+- Short explanations for non-technical users
 
 ### What AI is NOT Responsible For
 
-!!! danger "AI Limitations"
+::: danger AI Limitations
 AI is **not** responsible for:
 
-    - ❌ Defining entity models or NGSI-LD schema
-    - ❌ Making security or access control decisions
-    - ❌ Executing operational or deployment changes
-    - ❌ Critical business logic
-    - ❌ Data validation or integrity checks
+- ❌ Defining entity models or NGSI-LD schema
+- ❌ Making security or access control decisions
+- ❌ Executing operational or deployment changes
+- ❌ Critical business logic
+- ❌ Data validation or integrity checks
+  :::
 
 ---
 
@@ -73,7 +72,13 @@ The Payload AI plugin:
 
 From LegoCity's perspective:
 
-!!! tip "Plugin Philosophy" - AI integration is **just another plugin** - Configured per environment (dev, staging, prod) - Used only where explicitly enabled - Should gracefully disable if no provider configured
+::: tip Plugin Philosophy
+
+- AI integration is **just another plugin**
+- Configured per environment (dev, staging, prod)
+- Used only where explicitly enabled
+- Should gracefully disable if no provider configured
+  :::
 
 **Behavior when disabled:**
 
@@ -89,51 +94,94 @@ Practical examples of AI usage in smart city context:
 
 ### Use Case 1: Layer Descriptions
 
-=== "Workflow" 1. Editor defines technical metadata for a layer: - Source: NGSI-LD broker - Entity type: `WeatherObserved` - Attributes: `temperature`, `humidity`, `precipitation`
+**Workflow:**
 
-    2. AI generates user-facing description:
-       > "This layer displays real-time weather data from stations across the city. View current temperature, humidity levels, and rainfall measurements updated every 15 minutes."
+1. Editor defines technical metadata for a layer:
 
-=== "Benefits" - Saves time for content editors - Consistent tone and style - Non-technical language for end users - Editable output for refinement
+   - Source: NGSI-LD broker
+   - Entity type: `WeatherObserved`
+   - Attributes: `temperature`, `humidity`, `precipitation`
+
+2. AI generates user-facing description:
+   > "This layer displays real-time weather data from stations across the city. View current temperature, humidity levels, and rainfall measurements updated every 15 minutes."
+
+**Benefits:**
+
+- Saves time for content editors
+- Consistent tone and style
+- Non-technical language for end users
+- Editable output for refinement
 
 ### Use Case 2: View Summaries
 
-=== "Workflow" 1. Editor creates a "Flood Monitoring" view with: - Weather layer (rainfall) - Flood risk zones - Water level sensors
+**Workflow:**
 
-    2. AI suggests introduction text:
-       > **Flood Monitoring Dashboard**
-       >
-       > Monitor real-time flood risk across the city:
-       > - Track rainfall intensity and accumulation
-       > - View high-risk flood zones
-       > - Monitor river water levels at key points
+1. Editor creates a "Flood Monitoring" view with:
 
-=== "Benefits" - Quick drafts for new views - Structured content format - Sample questions for help tooltips
+   - Weather layer (rainfall)
+   - Flood risk zones
+   - Water level sensors
+
+2. AI suggests introduction text:
+   > **Flood Monitoring Dashboard**
+   >
+   > Monitor real-time flood risk across the city:
+   >
+   > - Track rainfall intensity and accumulation
+   > - View high-risk flood zones
+   > - Monitor river water levels at key points
+
+**Benefits:**
+
+- Quick drafts for new views
+- Structured content format
+- Sample questions for help tooltips
 
 ### Use Case 3: Block Labels
 
-=== "Workflow" 1. `LayerToggle` block configured with layers: - `flood-risk-high` - `flood-risk-medium` - `flood-risk-low`
+**Workflow:**
 
-    2. AI suggests concise label:
-       > "Flood Risk Zones"
+1. `LayerToggle` block configured with layers:
 
-=== "Benefits" - Consistent naming conventions - User-friendly terminology - Saves repetitive naming tasks
+   - `flood-risk-high`
+   - `flood-risk-medium`
+   - `flood-risk-low`
+
+2. AI suggests concise label:
+   > "Flood Risk Zones"
+
+**Benefits:**
+
+- Consistent naming conventions
+- User-friendly terminology
+- Saves repetitive naming tasks
 
 ### Use Case 4: Example Questions
 
-=== "Workflow" 1. AI analyzes view configuration 2. Proposes sample questions users might ask: - "Where are the highest flood risk areas?" - "What's the current rainfall intensity?" - "Which areas should be evacuated?"
+**Workflow:**
 
-=== "Benefits" - Helps with help documentation - Improves user guidance - Identifies common use cases
+1. AI analyzes view configuration
+2. Proposes sample questions users might ask:
+   - "Where are the highest flood risk areas?"
+   - "What's the current rainfall intensity?"
+   - "Which areas should be evacuated?"
+
+**Benefits:**
+
+- Helps with help documentation
+- Improves user guidance
+- Identifies common use cases
 
 ### Editor Control Principles
 
-!!! success "Human in the Loop"
+::: tip Human in the Loop
 In all cases:
 
-    - ✅ AI output is **editable** and **reversible**
-    - ✅ Editors retain **full control**
-    - ✅ AI provides **suggestions**, not final decisions
-    - ✅ Previous content is preserved
+- ✅ AI output is **editable** and **reversible**
+- ✅ Editors retain **full control**
+- ✅ AI provides **suggestions**, not final decisions
+- ✅ Previous content is preserved
+  :::
 
 ---
 
@@ -143,47 +191,62 @@ In all cases:
 
 To use the AI plugin, each environment must have:
 
-=== "Required Configuration" - API keys or credentials for chosen provider - Plugin configuration in Payload config - Environment variables for secrets - Optional: Provider-specific settings
+**Required Configuration:**
 
-=== "Example Configuration"
+- API keys or credentials for chosen provider
+- Plugin configuration in Payload config
+- Environment variables for secrets
+- Optional: Provider-specific settings
 
-````typescript title="payload.config.ts"
-import { payloadAI } from '@payloadcms/plugin-ai'
+**Example Configuration:**
 
-    export default buildConfig({
-      plugins: [
-        payloadAI({
-          provider: 'openai',
-          apiKey: process.env.OPENAI_API_KEY,
-          enabled: process.env.ENABLE_AI === 'true',
-          collections: {
-            layers: {
-              fields: ['description', 'tooltip']
-            },
-            views: {
-              fields: ['summary', 'introduction']
-            }
-          }
-        })
-      ]
-    })
-    ```
+```typescript
+// payload.config.ts
+import { payloadAI } from "@payloadcms/plugin-ai";
 
-=== "Environment Variables"
-```bash title=".env" # AI Provider Configuration
+export default buildConfig({
+  plugins: [
+    payloadAI({
+      provider: "openai",
+      apiKey: process.env.OPENAI_API_KEY,
+      enabled: process.env.ENABLE_AI === "true",
+      collections: {
+        layers: {
+          fields: ["description", "tooltip"],
+        },
+        views: {
+          fields: ["summary", "introduction"],
+        },
+      },
+    }),
+  ],
+});
+```
+
+**Environment Variables:**
+
+```bash
+# .env
+# AI Provider Configuration
 ENABLE_AI=true
 AI_PROVIDER=openai
 OPENAI_API_KEY=sk-...
 
-    # Optional: Provider-specific settings
-    AI_MODEL=gpt-4
-    AI_TEMPERATURE=0.7
-    AI_MAX_TOKENS=500
-    ```
+# Optional: Provider-specific settings
+AI_MODEL=gpt-4
+AI_TEMPERATURE=0.7
+AI_MAX_TOKENS=500
+```
 
 ### Configuration Principles
 
-!!! warning "Security Best Practices" - 🔐 Store AI provider keys as **secrets** (env vars or secret manager) - 🌍 Allow **different providers or keys per environment** - 🔌 Allow AI to be **completely disabled** - 🚫 Never commit API keys to version control
+::: warning Security Best Practices
+
+- 🔐 Store AI provider keys as **secrets** (env vars or secret manager)
+- 🌍 Allow **different providers or keys per environment**
+- 🔌 Allow AI to be **completely disabled**
+- 🚫 Never commit API keys to version control
+  :::
 
 ### Environment Matrix
 
@@ -196,7 +259,7 @@ OPENAI_API_KEY=sk-...
 
 ### Platform Independence
 
-!!! success "No Dependencies"
+::: tip No Dependencies
 The platform logic must **not depend** on AI features:
 
     - Core functionality works without AI
@@ -211,7 +274,13 @@ When adding AI helpers to the admin UI:
 
 ### 1. Explicit AI Actions
 
-!!! tip "User Intent Required" - Add clear buttons: "Generate description", "Suggest labels" - **Never** auto-run AI without user action - Provide keyboard shortcuts for power users - Show loading states during AI operations
+::: tip User Intent Required
+
+- Add clear buttons: "Generate description", "Suggest labels"
+- **Never** auto-run AI without user action
+- Provide keyboard shortcuts for power users
+- Show loading states during AI operations
+  :::
 
 **Example:**
 
@@ -223,11 +292,17 @@ When adding AI helpers to the admin UI:
 >
   ✨ Generate Description with AI
 </Button>
-````
+```
 
 ### 2. Clear Suggestion Display
 
-!!! tip "Transparent AI Output" - Show AI output as **suggested content**, not final truth - Allow editors to **accept**, **edit**, or **discard** - Preserve original content if replaced - Show comparison view when useful
+::: tip Transparent AI Output
+
+- Show AI output as **suggested content**, not final truth
+- Allow editors to **accept**, **edit**, or **discard**
+- Preserve original content if replaced
+- Show comparison view when useful
+  :::
 
 **Example UI:**
 
@@ -245,11 +320,17 @@ Original content: "Weather layer"
 
 ### 3. Focused Actions
 
-!!! tip "Small, Single-Purpose Tasks" - Keep actions **small and focused** (one field or section) - Avoid complex, multi-step AI chains - Allow partial acceptance of suggestions - Enable undo/redo
+::: tip Small, Single-Purpose Tasks
+
+- Keep actions **small and focused** (one field or section)
+- Avoid complex, multi-step AI chains
+- Allow partial acceptance of suggestions
+- Enable undo/redo
+  :::
 
 ### 4. Graceful Error Handling
 
-!!! warning "Handle Failures Well"
+::: warning Handle Failures Well
 Timeouts, provider issues, or invalid configuration should:
 
     - Show **clear error messages**
@@ -276,7 +357,7 @@ The AI provider is currently unavailable. You can:
 
 ### Data Privacy
 
-!!! danger "Sensitive Data Protection"
+::: danger Sensitive Data Protection
 **Avoid sending to external AI providers:**
 
     - Personal identifiable information (PII)
@@ -294,7 +375,7 @@ The AI provider is currently unavailable. You can:
 
 ### Content Validation
 
-!!! warning "AI Output Review"
+::: warning AI Output Review
 **Treat AI outputs as untrusted until human approval:**
 
     - Review for technical accuracy
@@ -326,7 +407,7 @@ The AI provider is currently unavailable. You can:
 
 ### Transparency Requirements
 
-!!! info "Clear Communication"
+::: info Clear Communication
 Documentation and UI should make clear:
 
     - AI output might be **imprecise or incomplete**
@@ -340,11 +421,29 @@ Documentation and UI should make clear:
 
 ### 1. Decoupled Architecture
 
-!!! success "Separation of Concerns" - Keep AI features **independent** from core functionality - AI plugin should be **usable standalone** - Don't tie core flows to AI completion: - Seed data generation - Database migrations - Authentication/authorization - API responses
+::: tip Separation of Concerns
+
+- Keep AI features **independent** from core functionality
+- AI plugin should be **usable standalone**
+- Don't tie core flows to AI completion:
+  - Seed data generation
+  - Database migrations
+  - Authentication/authorization
+  - API responses
+    :::
 
 ### 2. Transparent Prompts
 
-!!! success "Document AI Behavior" - Store prompts in a **clearly documented place** - Make them **concise and domain-specific**: - Smart city concepts - NGSI-LD terminology - LegoCity architecture - Version control prompt changes - Review prompt updates in PRs
+::: tip Document AI Behavior
+
+- Store prompts in a **clearly documented place**
+- Make them **concise and domain-specific**:
+  - Smart city concepts
+  - NGSI-LD terminology
+  - LegoCity architecture
+- Version control prompt changes
+- Review prompt updates in PRs
+  :::
 
 **Example Prompt Storage:**
 
@@ -369,7 +468,15 @@ Output: A clear, concise description.
 
 ### 3. Configurable Usage
 
-!!! success "Flexible Control" - Allow admins to **enable/disable AI per collection** - Allow admins to **enable/disable AI per field** - Support **role-based restrictions**: - Only editors can use AI features - Viewers cannot trigger AI actions - Provide global AI toggle
+::: tip Flexible Control
+
+- Allow admins to **enable/disable AI per collection**
+- Allow admins to **enable/disable AI per field**
+- Support **role-based restrictions**:
+  - Only editors can use AI features
+  - Viewers cannot trigger AI actions
+- Provide global AI toggle
+  :::
 
 **Example Configuration:**
 
@@ -392,7 +499,16 @@ payloadAI({
 
 ### 4. Privacy-Conscious Logging
 
-!!! success "Minimal Logging" - Log AI interactions **for debugging only** - Avoid storing **full prompts and responses** - Never log **sensitive content** - Use log levels appropriately: - INFO: AI action triggered - DEBUG: Request/response metadata - ERROR: Failures and timeouts
+::: tip Minimal Logging
+
+- Log AI interactions **for debugging only**
+- Avoid storing **full prompts and responses**
+- Never log **sensitive content**
+- Use log levels appropriately:
+  - INFO: AI action triggered
+  - DEBUG: Request/response metadata
+  - ERROR: Failures and timeouts
+    :::
 
 **Example Log Structure:**
 
@@ -463,7 +579,7 @@ describe("AI Integration", () => {
 
 ## Summary
 
-!!! success "Key Takeaways"
+::: tip Key Takeaways
 **AI helpers in LegoCity are optional and supportive**
 
     **Purpose:**

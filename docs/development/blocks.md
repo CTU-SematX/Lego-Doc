@@ -2,15 +2,16 @@
 
 This page explains how to create new UI blocks in LegoCity.
 
-!!! abstract "What are Blocks?"
+::: info What are Blocks?
 Blocks are the building units of the dashboard UI that describe:
 
-    - What appears in the sidebar
-    - What is shown in detail panels
-    - How layers are toggled
-    - How filters and controls are laid out
+- What appears in the sidebar
+- What is shown in detail panels
+- How layers are toggled
+- How filters and controls are laid out
 
 The goal is to let non-developers configure views and blocks in PayloadCMS, while developers provide the underlying building blocks in code.
+:::
 
 ---
 
@@ -30,7 +31,11 @@ A block in LegoCity has two sides:
 - How it interacts with Mapbox and other blocks
 - How it reads runtime data (from the proxy, broker, or context)
 
-!!! tip "Mapping Pattern" - **PayloadCMS:** Block type string (e.g. `"layerToggle"`, `"kpiCard"`, `"chart"`) - **Dashboard:** React component registered for each block type
+::: tip Mapping Pattern
+
+- **PayloadCMS:** Block type string (e.g. `"layerToggle"`, `"kpiCard"`, `"chart"`)
+- **Dashboard:** React component registered for each block type
+  :::
 
 ---
 
@@ -79,26 +84,34 @@ layout: array of blocks
 
 ### Creating a New Block Type
 
-=== "Choose Block Type"
+**Choose Block Type:**
+
 Pick a unique `blockType` or slug:
 
-    - `layerToggle`
-    - `kpiCard`
-    - `mapLegend`
-    - `chartWidget`
+- `layerToggle`
+- `kpiCard`
+- `mapLegend`
+- `chartWidget`
 
-=== "Define Fields"
+**Define Fields:**
+
 Define fields that users can edit:
 
-    - `title` - Display name
-    - `description` - Help text
-    - `layerRefs` - Links to layer definitions
-    - `thresholds` - Data ranges
-    - Any other configuration needed by the UI
+- `title` - Display name
+- `description` - Help text
+- `layerRefs` - Links to layer definitions
+- `thresholds` - Data ranges
+- Any other configuration needed by the UI
 
 ### Field Design Principles
 
-!!! success "Best Practices" - ✅ Expose only what is necessary for the block's behaviour - ✅ Avoid hard-coding display strings or IDs in the code - ✅ Prefer references to other collections (layers, views) - ✅ Keep configuration simple and intuitive
+::: tip Best Practices
+
+- ✅ Expose only what is necessary for the block's behaviour
+- ✅ Avoid hard-coding display strings or IDs in the code
+- ✅ Prefer references to other collections (layers, views)
+- ✅ Keep configuration simple and intuitive
+  :::
 
 ---
 
@@ -111,11 +124,15 @@ The dashboard fetches configuration from:
 
 ### Data Structure Requirements
 
-!!! warning "Required Fields" - Data must include a `type` or `blockType` field for each block - Remaining fields (props) must follow a predictable shape
+::: warning Required Fields
+
+- Data must include a `type` or `blockType` field for each block
+- Remaining fields (props) must follow a predictable shape
+  :::
 
 **Example JSON:**
 
-```json title="Block Configuration"
+```json
 {
   "blocks": [
     {
@@ -145,7 +162,8 @@ The dashboard fetches configuration from:
 
 Create a mapping from block type to React component:
 
-```typescript title="dashboard/src/blocks/registry.ts"
+```typescript
+// dashboard/src/blocks/registry.ts
 const BLOCK_REGISTRY: Record<string, React.ComponentType<BlockProps>> = {
   layerToggle: LayerToggleBlock,
   kpiCard: KpiCardBlock,
@@ -164,70 +182,74 @@ Create a component that:
 
 ### Adding a New Block
 
-=== "1. Create Component"
+**1. Create Component:**
+
 **Example: LayerToggleBlock**
 
-    ```typescript title="dashboard/src/blocks/LayerToggleBlock.tsx"
-    interface LayerToggleProps {
-      title: string;
-      layers: string[];
-      initialState?: boolean;
-    }
+```typescript
+// dashboard/src/blocks/LayerToggleBlock.tsx
+interface LayerToggleProps {
+  title: string;
+  layers: string[];
+  initialState?: boolean;
+}
 
-    export const LayerToggleBlock: React.FC<LayerToggleProps> = ({
-      title,
-      layers,
-      initialState = false
-    }) => {
-      const { showLayer, hideLayer } = useMapController();
-      const [isVisible, setIsVisible] = useState(initialState);
+export const LayerToggleBlock: React.FC<LayerToggleProps> = ({
+  title,
+  layers,
+  initialState = false,
+}) => {
+  const { showLayer, hideLayer } = useMapController();
+  const [isVisible, setIsVisible] = useState(initialState);
 
-      const handleToggle = () => {
-        layers.forEach(layerId => {
-          isVisible ? hideLayer(layerId) : showLayer(layerId);
-        });
-        setIsVisible(!isVisible);
-      };
+  const handleToggle = () => {
+    layers.forEach((layerId) => {
+      isVisible ? hideLayer(layerId) : showLayer(layerId);
+    });
+    setIsVisible(!isVisible);
+  };
 
-      return (
-        <div className="layer-toggle-block">
-          <h3>{title}</h3>
-          <button onClick={handleToggle}>
-            {isVisible ? 'Hide' : 'Show'} Layers
-          </button>
-        </div>
-      );
-    };
-    ```
+  return (
+    <div className="layer-toggle-block">
+      <h3>{title}</h3>
+      <button onClick={handleToggle}>
+        {isVisible ? "Hide" : "Show"} Layers
+      </button>
+    </div>
+  );
+};
+```
 
-=== "2. Register Block"
+**2. Register Block:**
+
 Add to the registry:
 
-    ```typescript
-    const BLOCK_REGISTRY = {
-      // ... existing blocks
-      layerToggle: LayerToggleBlock,
-    };
-    ```
+```typescript
+const BLOCK_REGISTRY = {
+  // ... existing blocks
+  layerToggle: LayerToggleBlock,
+};
+```
 
-    Ensure the type string matches what PayloadCMS sends.
+Ensure the type string matches what PayloadCMS sends.
 
-=== "3. Type Safety"
+**3. Type Safety:**
+
 Define specific props types:
 
-    ```typescript
-    interface BlockProps {
-      type: string;
-      [key: string]: any;
-    }
+```typescript
+interface BlockProps {
+  type: string;
+  [key: string]: any;
+}
 
-    interface LayerToggleProps extends BlockProps {
-      type: 'layerToggle';
-      title: string;
-      layers: string[];
-      initialState?: boolean;
-    }
-    ```
+interface LayerToggleProps extends BlockProps {
+  type: "layerToggle";
+  title: string;
+  layers: string[];
+  initialState?: boolean;
+}
+```
 
 ---
 
@@ -244,7 +266,8 @@ Many blocks need to:
 
 Create a map context or controller:
 
-```typescript title="Map Controller Interface"
+```typescript
+// Map Controller Interface
 interface MapController {
   showLayer: (id: string) => void;
   hideLayer: (id: string) => void;
@@ -270,9 +293,14 @@ const LayerToggleBlock: React.FC<LayerToggleProps> = ({ layers }) => {
 
 ### Design Principles
 
-!!! tip "Keep Blocks Focused" - One block toggles a specific group of layers - Another block visualizes a KPI based on data - Another block selects a filter or time range
+::: tip Keep Blocks Focused
 
-    Avoid coupling blocks directly to raw Mapbox internals—route interactions through the shared map controller.
+- One block toggles a specific group of layers
+- Another block visualizes a KPI based on data
+- Another block selects a filter or time range
+
+Avoid coupling blocks directly to raw Mapbox internals—route interactions through the shared map controller.
+:::
 
 ---
 
@@ -296,7 +324,8 @@ Specify:
 
 ### React Component Implementation
 
-```typescript title="KPI Card Example"
+```typescript
+// KPI Card Example
 const KpiCardBlock: React.FC<KpiCardProps> = ({ title, metricKey }) => {
   const [value, loading, error] = useMetric(metricKey);
 
@@ -314,7 +343,13 @@ const KpiCardBlock: React.FC<KpiCardProps> = ({ title, metricKey }) => {
 
 ### API Design Considerations
 
-!!! success "Keep UI Simple" - Return aggregated results where possible - Avoid forcing the UI to implement heavy transformation logic - Provide loading and error states - Cache frequently accessed data
+::: tip Keep UI Simple
+
+- Return aggregated results where possible
+- Avoid forcing the UI to implement heavy transformation logic
+- Provide loading and error states
+- Cache frequently accessed data
+  :::
 
 ---
 
@@ -383,86 +418,88 @@ Document:
 
 ### Provide Examples
 
-=== "Screenshots"
+**Screenshots:**
+
 Include screenshots of the block in use
 
-=== "Configuration"
-`json
-    {
-      "type": "layerToggle",
-      "title": "Flood Risk Layers",
-      "layers": [
-        "env:flood-risk-high",
-        "env:flood-risk-medium"
-      ],
-      "initialState": true
-    }
-    `
+**Configuration:**
 
-=== "Component Usage"
-`typescript
-    <LayerToggleBlock
-      title="Flood Risk Layers"
-      layers={["env:flood-risk-high", "env:flood-risk-medium"]}
-      initialState={true}
-    />
-    `
+```json
+{
+  "type": "layerToggle",
+  "title": "Flood Risk Layers",
+  "layers": ["env:flood-risk-high", "env:flood-risk-medium"],
+  "initialState": true
+}
+```
+
+**Component Usage:**
+
+```typescript
+<LayerToggleBlock
+  title="Flood Risk Layers"
+  layers={["env:flood-risk-high", "env:flood-risk-medium"]}
+  initialState={true}
+/>
+```
 
 ---
 
 ## Block Development Checklist
 
-!!! example "Creating a New Block"
+::: details Creating a New Block
 **PayloadCMS:**
 
-    - [ ] Define block type and unique slug
-    - [ ] Add configurable fields
-    - [ ] Test block creation in admin panel
-    - [ ] Document field purposes
+- [ ] Define block type and unique slug
+- [ ] Add configurable fields
+- [ ] Test block creation in admin panel
+- [ ] Document field purposes
 
-    **Dashboard:**
+**Dashboard:**
 
-    - [ ] Create React component
-    - [ ] Add to block registry
-    - [ ] Implement prop types (TypeScript)
-    - [ ] Handle loading/error states
-    - [ ] Connect to map controller (if needed)
-    - [ ] Connect to data API (if needed)
+- [ ] Create React component
+- [ ] Add to block registry
+- [ ] Implement prop types (TypeScript)
+- [ ] Handle loading/error states
+- [ ] Connect to map controller (if needed)
+- [ ] Connect to data API (if needed)
 
-    **Testing:**
+**Testing:**
 
-    - [ ] Create test view in PayloadCMS
-    - [ ] Verify block renders correctly
-    - [ ] Test interactive features
-    - [ ] Check mobile responsiveness
+- [ ] Create test view in PayloadCMS
+- [ ] Verify block renders correctly
+- [ ] Test interactive features
+- [ ] Check mobile responsiveness
 
-    **Documentation:**
+**Documentation:**
 
-    - [ ] Update block reference
-    - [ ] Add usage examples
-    - [ ] Include screenshots
-    - [ ] Document known limitations
+- [ ] Update block reference
+- [ ] Add usage examples
+- [ ] Include screenshots
+- [ ] Document known limitations
+      :::
 
 ---
 
 ## Summary
 
-!!! success "Key Takeaways"
+::: tip Key Takeaways
 **Blocks connect PayloadCMS configuration with React components**
 
-    **To create a new block:**
+**To create a new block:**
 
-    1. Define block type and fields in PayloadCMS
-    2. Ensure API exposes block data with `type` and `props`
-    3. Implement React component and register in block registry
-    4. Wire to map controller or data APIs if needed
-    5. Test in real views and document usage
+1. Define block type and fields in PayloadCMS
+2. Ensure API exposes block data with `type` and `props`
+3. Implement React component and register in block registry
+4. Wire to map controller or data APIs if needed
+5. Test in real views and document usage
 
-    **Best practices:**
+**Best practices:**
 
-    - Keep blocks small, focused, and data-driven
-    - Enable non-developers to compose complex dashboards from simple pieces
-    - Always update documentation for other contributors
+- Keep blocks small, focused, and data-driven
+- Enable non-developers to compose complex dashboards from simple pieces
+- Always update documentation for other contributors
+  :::
 
 **Related Pages:**
 
