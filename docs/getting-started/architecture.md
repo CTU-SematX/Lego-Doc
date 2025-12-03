@@ -83,12 +83,12 @@ graph TB
     style NR fill:#1e293b,stroke:#94a3b8,stroke-width:2px,stroke-dasharray:5 5,color:#e2e8f0
 ```
 
-::: tip Kiến trúc 3 lớp
-**Layer 1 (Data Sources):** Các nguồn dữ liệu IoT, sensors, cameras, external APIs đẩy dữ liệu theo chuẩn NGSI-LD
+::: 
+**Data Sources:** IoT data sources, sensors, cameras, and external APIs pushing data according to the NGSI-LD standard.
 
-**Layer 2 (Broker Node):** Cụm Context Broker với Security Gateway, Orion-LD và MongoDB để lưu trữ state
+**Broker Node:** Context Broker cluster with Security Gateway, Orion-LD, and MongoDB for state storage.
 
-**Layer 3 (Dashboard):** Application server với Next.js và PayloadCMS để quản lý và hiển thị dữ liệu
+**Dashboard:** Application server with Next.js and PayloadCMS to manage and display data.
 :::
 
 ## Three-Layer Design
