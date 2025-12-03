@@ -12,54 +12,54 @@ graph TB
         DS2["Máy chủ nguồn B<br/>Camera AI API"]
         DS3["Máy chủ nguồn N"]
     end
-    
+
     %% Context Broker
     subgraph L2["🔄 CONTEXT BROKER"]
         SG["Cổng bảo mật<br/>Nginx + Xác thực"]
-        
+
         subgraph BC["Broker Core"]
             CB["Orion-LD<br/>Context Broker"]
             MDB1[("MongoDB<br/>Trạng thái")]
         end
-        
+
         OBN["Các node khác"]
-        
+
         CB -->|Lưu trữ| MDB1
         CB -.->|Đồng bộ| OBN
     end
-    
+
     %% Dashboard
     subgraph L3["📊 DASHBOARD"]
         AS["Máy chủ ứng dụng<br/>Next.js + Payload"]
-        
+
         subgraph AC["Ứng dụng"]
             NX["Next.js"]
             PL["PayloadCMS"]
             NX <-->|API| PL
         end
-        
+
         MDB2[("Cơ sở dữ liệu<br/>MongoDB")]
-        
+
         AS --> AC
         PL -->|CRUD| MDB2
     end
-    
+
     %% Mối quan hệ
     subgraph NR["ℹ️ Quan hệ N-N"]
         INFO["1 Dashboard → N Brokers<br/>1 Broker → N Dashboards"]
     end
-    
+
     %% Dòng dữ liệu
     DS1 ==>|POST<br/>NGSI-LD| SG
     DS2 ==>|POST<br/>NGSI-LD| SG
     DS3 ==>|POST<br/>NGSI-LD| SG
-    
+
     SG ==>|Định tuyến| CB
     AS <==>|GET/SUB<br/>Truy vấn| SG
-    
+
     L2 -.- NR
     L3 -.- NR
-    
+
     %% Styling
     classDef layer1 fill:#0891b2,stroke:#22d3ee,stroke-width:3px,color:#fff
     classDef layer2main fill:#059669,stroke:#22c55e,stroke-width:4px,color:#fff
@@ -67,14 +67,14 @@ graph TB
     classDef layer3 fill:#7c3aed,stroke:#a855f7,stroke-width:3px,color:#fff
     classDef db fill:#f97316,stroke:#fb923c,stroke-width:3px,color:#fff
     classDef info fill:#334155,stroke:#64748b,stroke-width:2px,color:#cbd5e1
-    
+
     class DS1,DS2,DS3 layer1
     class SG layer2main
     class CB,OBN layer2sub
     class AS,NX,PL layer3
     class MDB1,MDB2 db
     class INFO info
-    
+
     style L1 fill:#0f172a,stroke:#22d3ee,stroke-width:4px,color:#fff
     style L2 fill:#0f172a,stroke:#22c55e,stroke-width:4px,color:#fff
     style L3 fill:#0f172a,stroke:#a855f7,stroke-width:4px,color:#fff
