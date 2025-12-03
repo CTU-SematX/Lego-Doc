@@ -38,6 +38,8 @@ jobs:
       - name: Build with VitePress
         run: npm run docs:build
 
+      # Explicitly ensure .nojekyll exists to prevent GitHub Pages from processing the site with Jekyll
+      # This file should be copied from docs/public/ by VitePress, but we add it explicitly for safety
       - name: Add .nojekyll file to prevent Jekyll processing
         run: touch docs/.vitepress/dist/.nojekyll
 
