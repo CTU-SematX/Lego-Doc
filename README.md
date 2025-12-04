@@ -1,4 +1,3 @@
-
 # LegoCity Documentation
 
 <div style="float:right">
@@ -99,7 +98,7 @@ This documentation is licensed under the [Creative Commons Attribution 4.0 Inter
 
 - **LegoCity Repository**: [github.com/CTU-SematX/LegoCity](https://github.com/CTU-SematX/LegoCity)
 - **Issues**: [GitHub Issues](https://github.com/CTU-SematX/Lego-Doc/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/CTU-SematX/LegoCity/discussions)
+- **Discussions**: [GitHub Discussions](https://discord.gg/gREP69pH)
 
 ## 👥 Maintainers
 
