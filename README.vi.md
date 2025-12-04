@@ -98,7 +98,7 @@ Tài liệu này được cấp phép theo [Creative Commons Attribution 4.0 Int
 
 - **Repository LegoCity**: [github.com/CTU-SematX/LegoCity](https://github.com/CTU-SematX/LegoCity)
 - **Issues**: [GitHub Issues](https://github.com/CTU-SematX/Lego-Doc/issues)
-- **Thảo luận**: [GitHub Discussions](https://github.com/CTU-SematX/LegoCity/discussions)
+- **Thảo luận**: [GitHub Discussions](https://discord.gg/gREP69pH)
 
 ## 👥 Người duy trì
 
