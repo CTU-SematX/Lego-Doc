@@ -9,7 +9,6 @@ This guide covers:
 - 🧱 **[Creating Blocks](blocks.md)** - Build custom UI components
 - 🔌 **[Writing Plugins](plugins.md)** - Extend PayloadCMS functionality
 - 🌱 **[Seed Data](seed-data.md)** - Populate sample data
-- 🔄 **[Downstream Projects](downstream-projects.md)** - Sync with Lego-Dashboard
 - 🗺️ **Map Customization** - Add custom map layers (see User Guide)
 - 🧪 **Testing** - Write and run tests (coming soon)
 
