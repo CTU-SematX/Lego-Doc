@@ -162,8 +162,7 @@ export default withMermaid({
             { text: 'Overview', link: '/development/' },
             { text: 'Blocks', link: '/development/blocks' },
             { text: 'Plugins', link: '/development/plugins' },
-            { text: 'Seed Data', link: '/development/seed-data' },
-            { text: 'Downstream Projects', link: '/development/downstream-projects' }
+            { text: 'Seed Data', link: '/development/seed-data' }
           ]
         },
         {
